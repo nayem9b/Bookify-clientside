@@ -20,25 +20,20 @@ const SignUp = () => {
     googleSignIn()
       .then((result) => {
         const user = result.user;
-        const currentUser = {
+        const userInfo = {
+          name: user.displayName,
           email: user.email,
+          role: "seller",
         };
-        fetch("https://server-side-nayem9b.vercel.app/jwt", {
+        fetch(`http://localhost:5000/userInfo`, {
           method: "POST",
           headers: {
             "content-type": "application/json",
           },
-
-          body: JSON.stringify(currentUser),
+          body: JSON.stringify(userInfo),
         })
           .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
-
-            localStorage.setItem("jwt-token", data.token);
-
-            navigate(from, { replace: true });
-          });
+          .then((data) => console.log(data));
         navigate(from, { replace: true });
         console.log(user);
       })
