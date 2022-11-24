@@ -9,6 +9,7 @@ import Root from "../Root/Root";
 import SignIn from "../SignIn/SignIn";
 import SignUp from "../SignUp/SignUp";
 import SimplePage from "../SimplePage/SimplePage";
+import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
@@ -22,7 +23,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/signin",
-        element: <SignIn></SignIn>,
+        element: (
+          <AdminRoute>
+            <SignIn></SignIn>{" "}
+          </AdminRoute>
+        ),
       },
 
       {
@@ -33,6 +38,10 @@ export const router = createBrowserRouter([
         path: "/blogs",
         element: <Blogs></Blogs>,
       },
+      // {
+      //   path: "/blogs",
+      //   element: <Blogs></Blogs>,
+      // },
     ],
   },
   {
@@ -45,6 +54,10 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/dashboard",
+        element: <SimplePage></SimplePage>,
+      },
+      {
+        path: "/dashboard/allusers",
         element: <SimplePage></SimplePage>,
       },
     ],
