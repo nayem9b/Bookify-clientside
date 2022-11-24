@@ -1,7 +1,11 @@
-import { browserSessionPersistence } from "firebase/auth";
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AddAProduct = () => {
+  const [condition, setCondition] = useState();
+  const [place, setPlace] = useState();
+  const navigate = useNavigate();
+
   const handleSubmitProduct = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -17,6 +21,8 @@ const AddAProduct = () => {
       mobileNumber: mobileNumber,
       originalPrice: originalPrice,
       description: description,
+      condition: condition,
+      place: place,
     };
 
     fetch("http://localhost:5000/addedProducts", {
@@ -27,7 +33,11 @@ const AddAProduct = () => {
       body: JSON.stringify(addedProduct),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        console.log(data);
+        form.reset();
+        navigate("/");
+      });
   };
   return (
     <div>
@@ -62,60 +72,72 @@ const AddAProduct = () => {
                 <div>
                   <h1>Condition Type</h1>
 
-                  <fieldset class='grid grid-cols-3 gap-4'>
-                    <legend class='sr-only'>Delivery</legend>
-
+                  <fieldset class='flex flex-wrap gap-3'>
                     <div>
                       <input
                         type='radio'
-                        name='DeliveryOption'
-                        value='DeliveryStandard'
-                        id='DeliveryStandard'
+                        name='ColorOption'
+                        value='Excillent'
+                        id='ColorBlack'
                         class='peer hidden'
-                        checked
+                        onClick={(e) => setCondition(e.target.value)}
                       />
 
                       <label
-                        for='DeliveryStandard'
-                        class='block cursor-pointer rounded-lg border border-gray-100 p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500'>
-                        <p class='text-gray-700'>Standard</p>
-
-                        <p class='mt-1 text-gray-900'>Free</p>
+                        for='ColorBlack'
+                        class='flex cursor-pointer items-center justify-center rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white'>
+                        <p class='text-sm font-medium'>Excillent</p>
                       </label>
                     </div>
 
                     <div>
                       <input
                         type='radio'
-                        name='DeliveryOption'
-                        value='DeliveryPriority'
-                        id='DeliveryPriority'
+                        name='ColorOption'
+                        value='Good'
+                        id='ColorRed'
                         class='peer hidden'
+                        onClick={(e) => setCondition(e.target.value)}
                       />
 
                       <label
-                        for='DeliveryPriority'
-                        class='block cursor-pointer rounded-lg border border-gray-100 p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500'>
-                        <p class='text-gray-700'>Next Day</p>
-
-                        <p class='mt-1 text-gray-900'>£9.99</p>
+                        for='ColorRed'
+                        class='flex cursor-pointer items-center justify-center rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white'>
+                        <p class='text-sm font-medium'>Good</p>
                       </label>
                     </div>
+
                     <div>
                       <input
                         type='radio'
-                        name='DeliveryOption'
-                        value='DeliveryPriority'
-                        id='DeliveryPriority'
+                        name='ColorOption'
+                        value='Fair'
+                        id='ColorBlue'
                         class='peer hidden'
+                        onClick={(e) => setCondition(e.target.value)}
                       />
 
                       <label
-                        for='DeliveryPriority'
-                        class='block cursor-pointer rounded-lg border border-gray-100 p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500'>
-                        <p class='text-gray-700'>Next Day</p>
+                        for='ColorBlue'
+                        class='flex cursor-pointer items-center justify-center rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white'>
+                        <p class='text-sm font-medium'>Fair</p>
+                      </label>
+                    </div>
 
-                        <p class='mt-1 text-gray-900'>£9.99</p>
+                    <div>
+                      <input
+                        type='radio'
+                        name='ColorOption'
+                        value='Torn'
+                        id='ColorGold'
+                        class='peer hidden'
+                        onClick={(e) => setCondition(e.target.value)}
+                      />
+
+                      <label
+                        for='ColorGold'
+                        class='flex cursor-pointer items-center justify-center rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white'>
+                        <p class='text-sm font-medium'>Torn</p>
                       </label>
                     </div>
                   </fieldset>
@@ -134,24 +156,20 @@ const AddAProduct = () => {
                 </div>
                 <h1>Location</h1>
                 <fieldset class='grid grid-cols-3 gap-4'>
-                  <legend class='sr-only'>Delivery</legend>
-
                   <div>
                     <input
                       type='radio'
                       name='DeliveryOption'
-                      value='DeliveryStandard'
+                      value='Dhaka'
                       id='DeliveryStandard'
                       class='peer hidden'
-                      checked
+                      onClick={(e) => setPlace(e.target.value)}
                     />
 
                     <label
                       for='DeliveryStandard'
                       class='block cursor-pointer rounded-lg border border-gray-100 p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500'>
-                      <p class='text-gray-700'>Standard</p>
-
-                      <p class='mt-1 text-gray-900'>Free</p>
+                      <p class='text-gray-700'>Dhaka</p>
                     </label>
                   </div>
 
@@ -159,34 +177,32 @@ const AddAProduct = () => {
                     <input
                       type='radio'
                       name='DeliveryOption'
-                      value='DeliveryPriority'
+                      value='Chittagong'
                       id='DeliveryPriority'
                       class='peer hidden'
+                      onClick={(e) => setPlace(e.target.value)}
                     />
 
                     <label
                       for='DeliveryPriority'
                       class='block cursor-pointer rounded-lg border border-gray-100 p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500'>
-                      <p class='text-gray-700'>Next Day</p>
-
-                      <p class='mt-1 text-gray-900'>£9.99</p>
+                      <p class='text-gray-700'>Chittagong</p>
                     </label>
                   </div>
                   <div>
                     <input
                       type='radio'
                       name='DeliveryOption'
-                      value='DeliveryPriority'
-                      id='DeliveryPriority'
+                      value='Khulna'
+                      id='Khulna'
                       class='peer hidden'
+                      onClick={(e) => setPlace(e.target.value)}
                     />
 
                     <label
-                      for='DeliveryPriority'
+                      for='Khulna'
                       class='block cursor-pointer rounded-lg border border-gray-100 p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500'>
-                      <p class='text-gray-700'>Next Day</p>
-
-                      <p class='mt-1 text-gray-900'>£9.99</p>
+                      <p class='text-gray-700'>Khulna</p>
                     </label>
                   </div>
                 </fieldset>

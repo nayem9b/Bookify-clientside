@@ -21,7 +21,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <AddAProduct></AddAProduct>
     </section>
   );
 };

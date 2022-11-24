@@ -4,6 +4,7 @@ import Blogs from "../Blogs/Blogs";
 import DashboardLayout from "../DashBoard/DashboardLayout";
 
 import Home from "../Home/Home";
+import MyProducts from "../MyProducts/MyProducts";
 
 import Root from "../Root/Root";
 
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
       {
         path: "/signup",
         element: <SignUp></SignUp>,
+      },
+      {
+        path: "/myproducts",
+        element: <MyProducts></MyProducts>,
       },
       {
         path: "/addaproduct",
