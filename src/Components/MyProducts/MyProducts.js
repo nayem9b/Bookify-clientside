@@ -1,27 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TableRow from "./Table/TableRow/TableRow";
 
 const MyProducts = () => {
   const [products, setProducts] = useState([]);
-  fetch(`http://localhost:5000/myproducts`)
-    .then((res) => res.json())
-    .then((data) => setProducts(data));
+  const [clickedProduct, setClickedProduct] = useState();
+
+  console.log(clickedProduct);
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/myproducts`)
+      .then((res) => res.json())
+      .then((data) => setProducts(data));
+  }, []);
 
   const handleAdvertise = (_id) => {
     fetch(`http://localhost:5000/myproduct/${_id}`)
       .then((res) => res.json())
-      .then((data) => console.log(data));
-    console.log(_id);
+      .then((data) => setClickedProduct(data));
   };
-  const handlePost = (_id) => {
-    fetch(`http://localhost:5000/myproduct/${_id}`, {
-      method: "POST",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      });
-  };
+  //   const handlePost = (_id, name, price) => {
+  //     fetch(`http://localhost:5000/myproduct/${(_id, name, price)}`, {
+  //       method: "POST",
+  //     })
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         console.log(data, name, price);
+  //       });
+  //   };
   return (
     <div>
       <h2 className='text-3xl'>All Users</h2>
@@ -52,7 +57,9 @@ const MyProducts = () => {
                 <td>
                   <button
                     className='btn btn-xs btn-danger'
-                    onClick={() => handleAdvertise(product._id)}>
+                    onClick={() => {
+                      handleAdvertise(product._id);
+                    }}>
                     Advertise
                   </button>
                 </td>

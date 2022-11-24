@@ -9,6 +9,11 @@ const Home = () => {
       .then((res) => res.json())
       .then((data) => setCategories(data));
   }, []);
+  // useEffect(() => {
+  //   fetch("http://localhost:5000/myproduct/:id")
+  //     .then((res) => res.json())
+  //     .then((data) => console.log(data));
+  // }, []);
   console.log(categories);
   return (
     <section>
