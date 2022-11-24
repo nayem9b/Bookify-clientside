@@ -4,29 +4,50 @@ import TableRow from "./Table/TableRow/TableRow";
 const MyProducts = () => {
   const [products, setProducts] = useState([]);
   const [clickedProduct, setClickedProduct] = useState();
-
+  const [click, setClick] = useState(1);
+  const {
+    name,
+    condition,
+    mobileNumber,
+    originalPrice,
+    place,
+    description,
+    price,
+  } = clickedProduct;
+  const advertise = {
+    name: name,
+    mobileNumber: mobileNumber,
+    place: place,
+    description: description,
+    originalPrice: originalPrice,
+    condition: condition,
+  };
   console.log(clickedProduct);
-
+  console.log(name, mobileNumber, place, price);
   useEffect(() => {
     fetch(`http://localhost:5000/myproducts`)
       .then((res) => res.json())
       .then((data) => setProducts(data));
-  }, []);
+  }, [clickedProduct]);
 
   const handleAdvertise = (_id) => {
     fetch(`http://localhost:5000/myproduct/${_id}`)
       .then((res) => res.json())
       .then((data) => setClickedProduct(data));
+
+    fetch(`http://localhost:5000/myproduct/new`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(advertise),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
   };
-  //   const handlePost = (_id, name, price) => {
-  //     fetch(`http://localhost:5000/myproduct/${(_id, name, price)}`, {
-  //       method: "POST",
-  //     })
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         console.log(data, name, price);
-  //       });
-  //   };
+
   return (
     <div>
       <h2 className='text-3xl'>All Users</h2>
@@ -56,10 +77,11 @@ const MyProducts = () => {
                 </td>
                 <td>
                   <button
-                    className='btn btn-xs btn-danger'
                     onClick={() => {
                       handleAdvertise(product._id);
-                    }}>
+                      setClick(0);
+                    }}
+                    className='btn btn-xs btn-danger'>
                     Advertise
                   </button>
                 </td>
