@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import AddAProduct from "../AddAProduct/AddAProduct";
 import BooksCategory from "../BooksCategory/BooksCategory";
 
 const Home = () => {
@@ -20,6 +21,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <AddAProduct></AddAProduct>
     </section>
   );
 };

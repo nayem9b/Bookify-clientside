@@ -48,13 +48,13 @@ const Navbar = () => {
               </a>
             </li>
             <li>
-              <a
-                href='/'
+              <Link
+                to='/addaproduct'
                 aria-label='Product pricing'
                 title='Product pricing'
                 class='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'>
-                Pricing
-              </a>
+                Add A Product
+              </Link>
             </li>
             <li>
               <a
