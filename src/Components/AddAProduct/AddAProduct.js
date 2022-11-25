@@ -153,7 +153,6 @@ const AddAProduct = () => {
                   </label>
                   <input
                     class='w-full rounded-lg border-gray-200 p-3 text-sm'
-                    //   placeholder={user.displayName}
                     type='text'
                     name='mobileNumber'
                   />

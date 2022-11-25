@@ -3,6 +3,12 @@ import AddAProduct from "../AddAProduct/AddAProduct";
 import AllBuyers from "../AllBuyers/AllBuyers";
 import AllSeller from "../AllSeller/AllSeller";
 import Blogs from "../Blogs/Blogs";
+import BookCategory from "../BookCategory/BookCategory";
+import BookCategory2 from "../BookCategory/BookCategory2";
+import BookCategory3 from "../BookCategory/BookCategory3";
+import BooksCategory from "../BooksCategory/BooksCategory";
+// import BooksCategory2 from "../BooksCategory/BooksCategory2";
+// import BooksCategory3 from "../BooksCategory/BooksCategory3";
 import DashboardLayout from "../DashBoard/DashboardLayout";
 
 import Home from "../Home/Home";
@@ -30,6 +36,22 @@ export const router = createBrowserRouter([
       {
         path: "/signin",
         element: <SignIn></SignIn>,
+      },
+      {
+        path: "/category/action_and_adventure",
+        element: <BookCategory></BookCategory>,
+        loader: () =>
+          fetch("http://localhost:5000/category/action_and_adventure"),
+      },
+      {
+        path: "/category/classics",
+        element: <BookCategory2></BookCategory2>,
+        loader: () => fetch("http://localhost:5000/category/classics"),
+      },
+      {
+        path: "/category/memoir",
+        element: <BookCategory3></BookCategory3>,
+        loader: () => fetch("http://localhost:5000/category/memoir"),
       },
 
       {

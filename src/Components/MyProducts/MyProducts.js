@@ -51,18 +51,29 @@ const MyProducts = () => {
       });
   };
 
+  const handleDelete = (id) => {
+    fetch(`http://localhost:5000/myproducts/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        console.log("Product deleted");
+      });
+  };
+
   return (
     <div>
-      <h2 className='text-3xl'>All Users</h2>
+      <h2 className='text-3xl'>All Products</h2>
       <div className='overflow-x-auto'>
         <table className='table w-full'>
           <thead>
             <tr>
               <th></th>
               <th>Name</th>
-              <th>Email</th>
-              <th>Admin</th>
+              <th>Price</th>
               <th>Delete</th>
+              <th>Advertise</th>
             </tr>
           </thead>
           <tbody>
@@ -70,12 +81,15 @@ const MyProducts = () => {
               <tr key={product._id}>
                 <th>{i + 1}</th>
                 <td>{product.name}</td>
-                <td>{product.price}</td>
+                <td>
+                  {" "}
+                  {product.price} <span className='text-2xl'>৳</span>{" "}
+                </td>
                 <td>
                   <button
-                    // onClick={() => }
-                    className='btn btn-xs btn-primary'>
-                    Make Admin
+                    className='btn btn-error btn-xs'
+                    onClick={() => handleDelete(product._id)}>
+                    Delete
                   </button>
                 </td>
                 <td>
