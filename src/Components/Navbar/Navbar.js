@@ -5,14 +5,14 @@ import { AuthContext } from "../Context/UserContext";
 import navicon from "../../Images/icons8-open-book-64.png";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  // const { user, logout } = useContext(AuthContext);
-  // const { user, logout } = useContext(AuthContext);
-  // console.log(user);
-  // const [enabled, setEnabled] = useState(false);
-  // const handleLogout = () => {
-  //   logout();
-  //   toast.error("User logged out");
-  // };
+  const { user, logout } = useContext(AuthContext);
+
+  console.log(user);
+  const [enabled, setEnabled] = useState(false);
+  const handleLogout = () => {
+    logout();
+    console.log("user logged out");
+  };
   return (
     <div>
       <div class='px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8'>
@@ -30,22 +30,32 @@ const Navbar = () => {
           </Link>
           <ul class='flex items-center hidden space-x-8 lg:flex'>
             <li>
-              <a
-                href='/'
+              <Link
+                to='/allbuyers'
                 aria-label='Our product'
                 title='Our product'
                 class='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'>
-                Product
-              </a>
+                All Buyers
+              </Link>
             </li>
             <li>
-              <a
-                href='/'
+              <Link
+                to='/allsellers'
                 aria-label='Our product'
                 title='Our product'
                 class='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'>
-                Features
-              </a>
+                All Sellers
+              </Link>
+            </li>
+            <li>
+              <Link
+                to='/'
+                onClick={handleLogout}
+                aria-label='Our product'
+                title='Our product'
+                class='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'>
+                Log out
+              </Link>
             </li>
             <li>
               <Link
