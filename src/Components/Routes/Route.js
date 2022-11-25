@@ -6,9 +6,6 @@ import Blogs from "../Blogs/Blogs";
 import BookCategory from "../BookCategory/BookCategory";
 import BookCategory2 from "../BookCategory/BookCategory2";
 import BookCategory3 from "../BookCategory/BookCategory3";
-import BooksCategory from "../BooksCategory/BooksCategory";
-// import BooksCategory2 from "../BooksCategory/BooksCategory2";
-// import BooksCategory3 from "../BooksCategory/BooksCategory3";
 import DashboardLayout from "../DashBoard/DashboardLayout";
 
 import Home from "../Home/Home";
@@ -20,6 +17,7 @@ import Root from "../Root/Root";
 import SignIn from "../SignIn/SignIn";
 import SignUp from "../SignUp/SignUp";
 import SimplePage from "../SimplePage/SimplePage";
+import Wishlist from "../Wishlist/Wishlist";
 import AdminRoute from "./AdminRoute";
 import BuyerRoute from "./BuyerRoute";
 import PrivateRoute from "./PrivateRoute";
@@ -105,6 +103,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/allsellers",
         element: <AllSeller></AllSeller>,
+      },
+      {
+        path: "/dashboard/wishlist",
+        element: <Wishlist></Wishlist>,
       },
       {
         path: "/dashboard/myproducts",

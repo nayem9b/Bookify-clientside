@@ -32,49 +32,42 @@ const Home = () => {
         <Link to='/category/action_and_adventure' class='block'>
           <img
             alt='Art'
-            src='https://images.unsplash.com/photo-1605721911519-3dfeb3be25e7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
+            src='https://m.media-amazon.com/images/I/51eeAWItwbL._AC_SY780_.jpg'
             class='h-96 w-80 object-cover'
           />
 
           <h3 class='mt-4 text-xl font-bold text-gray-900'>
-            Lorem, ipsum dolor.
+            Action and Adventure
           </h3>
 
           <p class='mt-2 w-80 text-gray-700'>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magni
-            reiciendis sequi ipsam incidunt.
+            resale books under Action and Adventure category
           </p>
         </Link>
         <Link to='/category/classics' class='block'>
           <img
             alt='Art'
-            src='https://images.unsplash.com/photo-1605721911519-3dfeb3be25e7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
+            src='https://i.insider.com/60f865f00729770012b91de7?width=1000&format=jpeg&auto=webp'
             class='h-96 w-80 object-cover'
           />
 
-          <h3 class='mt-4 text-xl font-bold text-gray-900'>
-            Lorem, ipsum dolor.
-          </h3>
+          <h3 class='mt-4 text-xl font-bold text-gray-900'>Classics</h3>
 
           <p class='mt-2 w-80 text-gray-700'>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magni
-            reiciendis sequi ipsam incidunt.
+            resale books under Classic category
           </p>
         </Link>
         <Link to='/category/memoir' class='block'>
           <img
             alt='Art'
-            src='https://images.unsplash.com/photo-1605721911519-3dfeb3be25e7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
+            src='https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1558377374-41QZuQ2h2WL.jpg?crop=1xw:0.987xh;center,top&resize=480:*'
             class='h-96 w-80 object-cover'
           />
 
-          <h3 class='mt-4 text-xl font-bold text-gray-900'>
-            Lorem, ipsum dolor.
-          </h3>
+          <h3 class='mt-4 text-xl font-bold text-gray-900'>Memoir</h3>
 
           <p class='mt-2 w-80 text-gray-700'>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magni
-            reiciendis sequi ipsam incidunt.
+            resale books under Memoir category
           </p>
         </Link>
       </div>

@@ -10,7 +10,7 @@ const BookCategory = () => {
   const [price, setPrice] = useState();
   console.log(item, price);
   return (
-    <div className='grid lg:grid-cols-2 sm:grid-cols-1 gap-6'>
+    <div className='grid lg:grid-cols-2 sm:grid-cols-1 gap-4'>
       {bookData.map((book) => (
         <BookDetailsCard
           book={book}
