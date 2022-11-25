@@ -3,12 +3,18 @@ import toast from "react-hot-toast";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Context/UserContext";
 import navicon from "../../Images/icons8-open-book-64.png";
+import useAdmin from "../Hooks/useAdmin";
+import useBuyer from "../Hooks/useBuyer";
+import useSeller from "../Hooks/useSeller";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, logout } = useContext(AuthContext);
 
   console.log(user);
   const [enabled, setEnabled] = useState(false);
+  const [isAdmin] = useAdmin(user?.email);
+  const [isBuyer] = useBuyer(user?.email);
+  const [isSeller] = useSeller(user?.email);
   const handleLogout = () => {
     logout();
     console.log("user logged out");
@@ -51,6 +57,21 @@ const Navbar = () => {
               <li>
                 <Link to='/signin'>Login</Link>
               </li>
+            )}
+
+            {isBuyer && (
+              <>
+                <li>
+                  <Link to='/dashboard/myorders'>Dashboard</Link>
+                </li>
+              </>
+            )}
+            {isBuyer && (
+              <>
+                <li>
+                  <Link to='/dashboard/myproducts'>Dashboard</Link>
+                </li>
+              </>
             )}
             <li>
               <Link

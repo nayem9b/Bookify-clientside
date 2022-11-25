@@ -36,31 +36,12 @@ export const router = createBrowserRouter([
         path: "/signup",
         element: <SignUp></SignUp>,
       },
-      {
-        path: "/allbuyers",
-        element: <AllBuyers></AllBuyers>,
-      },
-      {
-        path: "/allsellers",
-        element: <AllSeller></AllSeller>,
-      },
-      {
-        path: "/myorders",
-        element: <MyOrders></MyOrders>,
-      },
-      {
-        path: "/myproducts",
-        element: <MyProducts></MyProducts>,
-      },
-      {
-        path: "/addaproduct",
-        element: (
-          <BuyerRoute>
-            {" "}
-            <AddAProduct></AddAProduct>
-          </BuyerRoute>
-        ),
-      },
+
+      // {
+      //   path: "/myorders",
+      //   element: <MyOrders></MyOrders>,
+      // },
+
       {
         path: "/blogs",
         element: (
@@ -90,6 +71,26 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/allusers",
         element: <SimplePage></SimplePage>,
+      },
+      {
+        path: "/dashboard/myorders",
+        element: <MyOrders></MyOrders>,
+      },
+      {
+        path: "/dashboard/allbuyers",
+        element: <AllBuyers></AllBuyers>,
+      },
+      {
+        path: "/dashboard/allsellers",
+        element: <AllSeller></AllSeller>,
+      },
+      {
+        path: "/dashboard/myproducts",
+        element: <MyProducts></MyProducts>,
+      },
+      {
+        path: "/dashboard/addaproduct",
+        element: <AddAProduct></AddAProduct>,
       },
     ],
   },

@@ -23,7 +23,7 @@ const SignUp = () => {
         const userInfo = {
           name: user.displayName,
           email: user.email,
-          role: "seller",
+          role: "Seller",
         };
         fetch(`http://localhost:5000/userInfo`, {
           method: "POST",

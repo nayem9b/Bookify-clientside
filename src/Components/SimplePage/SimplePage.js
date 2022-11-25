@@ -1,9 +1,12 @@
 import React from "react";
-
+import Lottie from "lottie-react";
+import nothing from "../../Images/127760-nothing.json";
 const SimplePage = () => {
   return (
     <div>
-      <h1>This is simple page</h1>
+      <div className=' flex justify-center '>
+        <Lottie animationData={nothing} loop={true} />
+      </div>
     </div>
   );
 };
