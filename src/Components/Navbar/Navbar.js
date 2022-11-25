@@ -38,6 +38,20 @@ const Navbar = () => {
                 All Buyers
               </Link>
             </li>
+            {user?.uid ? (
+              <>
+                <li>
+                  <Link to='/dashboard'>Dashboard</Link>
+                </li>
+                <li>
+                  <button onClick={handleLogout}>Sign out</button>
+                </li>
+              </>
+            ) : (
+              <li>
+                <Link to='/signin'>Login</Link>
+              </li>
+            )}
             <li>
               <Link
                 to='/allsellers'
@@ -47,7 +61,7 @@ const Navbar = () => {
                 All Sellers
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link
                 to='/'
                 onClick={handleLogout}
@@ -56,7 +70,7 @@ const Navbar = () => {
                 class='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'>
                 Log out
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link
                 to='/addaproduct'
@@ -75,7 +89,7 @@ const Navbar = () => {
                 My Products
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link
                 to='/signin'
                 class='inline-flex items-center justify-center bg-black h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none'
@@ -83,7 +97,7 @@ const Navbar = () => {
                 title='Sign up'>
                 Sign in
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link
                 to='/signup'
