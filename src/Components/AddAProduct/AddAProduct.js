@@ -26,6 +26,7 @@ const AddAProduct = () => {
       condition: condition,
       place: place,
       email: user.email,
+      date: new Date(Date.now()).toISOString(),
     };
 
     fetch("http://localhost:5000/addedProducts", {
