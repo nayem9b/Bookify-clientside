@@ -39,6 +39,9 @@ const BookDetailsCard2 = ({ book }) => {
             <span>Posted Time:</span> {posted_time}
           </p>
           <div className='card-actions justify-end'>
+            <label htmlFor='booking-modal' className='btn'>
+              open modal
+            </label>
             <button className='btn btn-primary'>Listen</button>
           </div>
         </div>
