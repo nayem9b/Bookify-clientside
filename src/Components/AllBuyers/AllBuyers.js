@@ -14,6 +14,16 @@ const AllBuyers = () => {
       return data;
     },
   });
+  const handleDelete = (id) => {
+    fetch(`http://localhost:5000/users/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        console.log("User deleted");
+      });
+  };
   console.log(allbuyers);
   return (
     <div>
@@ -37,7 +47,11 @@ const AllBuyers = () => {
                 <td>{buyer.email}</td>
 
                 <td>
-                  <button className='btn btn-error btn-sm'>Delete</button>
+                  <button
+                    className='btn btn-error btn-sm'
+                    onClick={() => handleDelete(buyer._id)}>
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}

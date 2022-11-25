@@ -111,7 +111,6 @@ const SignUp = () => {
                         value='Seller'
                         id='DeliveryStandard'
                         class='peer hidden'
-                        checked
                         onClick={(e) => setRole(e.target.value)}
                       />
 

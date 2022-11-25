@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../Context/UserContext";
 
 const AddAProduct = () => {
   const [condition, setCondition] = useState();
   const [place, setPlace] = useState();
   const navigate = useNavigate();
-
+  const { user } = useContext(AuthContext);
+  console.log(user.email);
   const handleSubmitProduct = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -23,6 +25,7 @@ const AddAProduct = () => {
       description: description,
       condition: condition,
       place: place,
+      email: user.email,
     };
 
     fetch("http://localhost:5000/addedProducts", {

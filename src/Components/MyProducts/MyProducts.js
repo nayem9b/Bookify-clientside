@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../Context/UserContext";
 import TableRow from "./Table/TableRow/TableRow";
 
 const MyProducts = () => {
   const [products, setProducts] = useState([]);
   const [clickedProduct, setClickedProduct] = useState();
   const [click, setClick] = useState(1);
-
+  const { user } = useContext(AuthContext);
   useEffect(() => {
     fetch(`http://localhost:5000/myproducts`)
       .then((res) => res.json())
@@ -32,6 +33,7 @@ const MyProducts = () => {
       description: description,
       originalPrice: originalPrice,
       condition: condition,
+      email: user.email,
     };
     console.log(clickedProduct);
     console.log(name, mobileNumber, place, price);
