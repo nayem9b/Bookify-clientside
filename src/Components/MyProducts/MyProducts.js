@@ -5,35 +5,36 @@ const MyProducts = () => {
   const [products, setProducts] = useState([]);
   const [clickedProduct, setClickedProduct] = useState();
   const [click, setClick] = useState(1);
-  const {
-    name,
-    condition,
-    mobileNumber,
-    originalPrice,
-    place,
-    description,
-    price,
-  } = clickedProduct;
-  const advertise = {
-    name: name,
-    mobileNumber: mobileNumber,
-    place: place,
-    description: description,
-    originalPrice: originalPrice,
-    condition: condition,
-  };
-  console.log(clickedProduct);
-  console.log(name, mobileNumber, place, price);
+
   useEffect(() => {
     fetch(`http://localhost:5000/myproducts`)
       .then((res) => res.json())
       .then((data) => setProducts(data));
-  }, [clickedProduct]);
+  }, []);
 
   const handleAdvertise = (_id) => {
     fetch(`http://localhost:5000/myproduct/${_id}`)
       .then((res) => res.json())
       .then((data) => setClickedProduct(data));
+    const {
+      name,
+      condition,
+      mobileNumber,
+      originalPrice,
+      place,
+      description,
+      price,
+    } = clickedProduct;
+    const advertise = {
+      name: name,
+      mobileNumber: mobileNumber,
+      place: place,
+      description: description,
+      originalPrice: originalPrice,
+      condition: condition,
+    };
+    console.log(clickedProduct);
+    console.log(name, mobileNumber, place, price);
 
     fetch(`http://localhost:5000/myproduct/new`, {
       method: "POST",
