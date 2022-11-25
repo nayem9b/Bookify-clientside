@@ -1,6 +1,35 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../Context/UserContext";
+const BookingModal = ({ item, price }) => {
+  const { user } = useContext(AuthContext);
+  const handleBooking = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const phoneNumber = form.phone.value;
+    const place = form.place.value;
 
-const BookingModal = () => {
+    const booking = {
+      email: user.email,
+      phoneNumber: phoneNumber,
+      place: place,
+      productName: item,
+      price: price,
+    };
+
+    console.log(booking);
+    fetch("http://localhost:5000/booking", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(booking),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  };
+
   return (
     <div>
       <input type='checkbox' id='booking-modal' className='modal-toggle' />
@@ -11,33 +40,35 @@ const BookingModal = () => {
             className='btn btn-sm btn-circle absolute right-2 top-2'>
             ✕
           </label>
-          {/* <h3 className='text-lg font-bold'>{treatmentName}</h3> */}
+          <h3 className='text-lg font-bold'>{item}</h3>
           <form
-            //   onSubmit={handleBooking}
+            onSubmit={handleBooking}
             className='grid grid-cols-1 gap-3 mt-10'>
-            <input
-              type='text'
-              disabled
-              // value={date}
-              className='input w-full input-bordered '
-            />
-            <select
-              name='slot'
-              className='select select-bordered w-full'></select>
             <input
               name='name'
               type='text'
-              // defaultValue={user?.displayName}
+              defaultValue={user?.displayName}
               disabled
               placeholder='Your Name'
               className='input w-full input-bordered'
             />
             <input
-              name='email'
-              type='email'
-              // defaultValue={user?.email}
+              type='text'
               disabled
-              placeholder='Email Address'
+              value={user.email}
+              className='input w-full input-bordered '
+            />
+
+            <input
+              name='name'
+              value={item}
+              disabled
+              className='input w-full input-bordered'
+            />
+            <input
+              name='price'
+              value={price}
+              disabled
               className='input w-full input-bordered'
             />
             <input
@@ -45,6 +76,14 @@ const BookingModal = () => {
               type='text'
               placeholder='Phone Number'
               className='input w-full input-bordered'
+              required
+            />
+            <input
+              name='place'
+              type='text'
+              placeholder='Meeting Location'
+              className='input w-full input-bordered'
+              required
             />
             <br />
             <input

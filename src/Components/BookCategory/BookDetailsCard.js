@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 
-const BookDetailsCard = ({ book }) => {
+const BookDetailsCard = ({ book, setItem, setPrice }) => {
   const {
     name,
     location,
@@ -10,6 +10,7 @@ const BookDetailsCard = ({ book }) => {
     resale_price,
     years_of_use,
   } = book;
+
   return (
     <div className='mx-24'>
       <div className='card lg:card-side bg-base-100 shadow-xl'>
@@ -39,10 +40,15 @@ const BookDetailsCard = ({ book }) => {
             <span>Posted Time:</span> {posted_time}
           </p>
           <div className='card-actions justify-end'>
-            <label htmlFor='booking-modal' className='btn'>
-              open modal
+            <label
+              htmlFor='booking-modal'
+              className='btn text-black border-none bg-[radial-gradient(ellipse_at_left,_var(--tw-gradient-stops))] from-pink-300 via-purple-300 to-indigo-300'
+              onClick={() => {
+                setItem(name);
+                setPrice(resale_price);
+              }}>
+              Book now
             </label>
-            <button className='btn btn-primary'>Listen</button>
           </div>
         </div>
       </div>

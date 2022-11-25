@@ -7,7 +7,7 @@ function App() {
   return (
     <div>
       <RouterProvider router={router}></RouterProvider>
-      <BookingModal></BookingModal>
+      {/* <BookingModal></BookingModal> */}
     </div>
   );
 }
