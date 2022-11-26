@@ -8,10 +8,10 @@ const MyProducts = () => {
   const [click, setClick] = useState(1);
   const { user } = useContext(AuthContext);
   useEffect(() => {
-    fetch(`http://localhost:5000/myproducts`)
+    fetch(`http://localhost:5000/myproducts?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => setProducts(data));
-  }, []);
+  }, [user?.email]);
 
   const handleAdvertise = (_id) => {
     fetch(`http://localhost:5000/myproduct/${_id}`)
