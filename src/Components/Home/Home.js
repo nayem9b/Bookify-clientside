@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AddAProduct from "../AddAProduct/AddAProduct";
 import BooksCategory from "../BooksCategory/BooksCategory";
 import { useQuery } from "@tanstack/react-query";
 import AdvertisedCard from "../AdvertisedCard/AdvertisedCard";
+import { AuthContext } from "../Context/UserContext";
 
 const Home = () => {
   const [categories, setCategories] = useState([]);
@@ -31,10 +32,14 @@ const Home = () => {
       return data;
     },
   });
+
+  const { user } = useContext(AuthContext);
   return (
     <section>
       <div className='ml-14 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-3'>
-        <Link to='/category/action_and_adventure' class='block'>
+        <Link
+          to={user ? "/category/action_and_adventure" : "/signin"}
+          class='block'>
           <img
             alt='Art'
             src='https://m.media-amazon.com/images/I/51eeAWItwbL._AC_SY780_.jpg'
@@ -49,7 +54,7 @@ const Home = () => {
             resale books under Action and Adventure category
           </p>
         </Link>
-        <Link to='/category/classics' class='block'>
+        <Link to={user ? "/category/classics" : "/signin"} class='block'>
           <img
             alt='Art'
             src='https://i.insider.com/60f865f00729770012b91de7?width=1000&format=jpeg&auto=webp'
@@ -62,7 +67,7 @@ const Home = () => {
             resale books under Classic category
           </p>
         </Link>
-        <Link to='/category/memoir' class='block'>
+        <Link to={user ? "/category/memoir" : "/signin"} class='block'>
           <img
             alt='Art'
             src='https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1558377374-41QZuQ2h2WL.jpg?crop=1xw:0.987xh;center,top&resize=480:*'

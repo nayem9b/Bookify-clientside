@@ -45,7 +45,7 @@ const AddAProduct = () => {
       });
   };
   return (
-    <div>
+    <div className='relative'>
       <section class='bg-gray-100'>
         <h1 className='px-8 text-3xl'>Add a product</h1>
         <div class='mx-auto max-w-screen-xl px-4 py-6 sm:px-6 lg:px-8'>

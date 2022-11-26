@@ -17,7 +17,7 @@ const BookDetailsCard = ({ book, setItem, setPrice }) => {
   const wishlist = {
     name: name,
     price: resale_price,
-    email: user.email,
+    email: user?.email,
   };
   const handleAddToWishlist = () => {
     fetch("http://localhost:5000/wishlist", {

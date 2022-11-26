@@ -84,10 +84,22 @@ const MyProducts = () => {
       });
   };
 
+  const handleMarkAsSold = (id) => {
+    fetch(`http://localhost:5000/advertised/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        console.log(id);
+        toast.success("Product marked as sold");
+      });
+  };
+
   return (
     <div>
       <h2 className='text-3xl font-semibold text-sky-600'>
-        Double click on advertise to confirm advertisement
+        Double click on 'Advertise' to confirm advertisement
       </h2>
       <div className='overflow-x-auto'>
         <table className='table w-full'>
@@ -130,7 +142,7 @@ const MyProducts = () => {
                 <td>
                   <button
                     onClick={() => {
-                      handleAdvertise(product._id);
+                      handleMarkAsSold(product._id);
                       setClick(0);
                     }}
                     className='btn btn-xs btn-danger'>
