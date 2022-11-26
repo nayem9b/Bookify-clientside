@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
+import { AuthContext } from "../Context/UserContext";
 
 const Wishlist = () => {
   const [wish, setWish] = useState([]);
-
+  const { user } = useContext(AuthContext);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/wishlist")
+      .get(`http://localhost:5000/wishlist?email=${user.email}`)
       .then((data) => setWish(data.data));
-  }, []);
+  }, [user?.email]);
 
   return (
     <div>

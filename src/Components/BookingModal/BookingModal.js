@@ -28,6 +28,7 @@ const BookingModal = ({ item, price }) => {
       .then((data) => {
         console.log(data);
       });
+    form.reset();
   };
 
   return (
