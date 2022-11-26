@@ -1,5 +1,6 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
 const AllSeller = () => {
   const {
@@ -22,7 +23,8 @@ const AllSeller = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        console.log("User deleted");
+        toast.success("Successfully toasted!");
+        refetch();
       });
   };
   console.log(allsellers);

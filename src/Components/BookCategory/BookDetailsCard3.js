@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import toast from "react-hot-toast";
 import { AuthContext } from "../Context/UserContext";
 
 const BookDetailsCard3 = ({ book, setItem, setPrice }) => {
@@ -28,7 +29,7 @@ const BookDetailsCard3 = ({ book, setItem, setPrice }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        toast.success("Product added to wishlist");
       });
   };
 
