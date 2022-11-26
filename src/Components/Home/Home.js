@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AddAProduct from "../AddAProduct/AddAProduct";
 import BooksCategory from "../BooksCategory/BooksCategory";
+import { useQuery } from "@tanstack/react-query";
+import AdvertisedCard from "../AdvertisedCard/AdvertisedCard";
 
 const Home = () => {
   const [categories, setCategories] = useState([]);
@@ -16,18 +18,21 @@ const Home = () => {
   //     .then((data) => console.log(data));
   // }, []);
   // console.log(categories);
+
+  const {
+    data: advertisedproducts = [],
+    refetch,
+    isLoading,
+  } = useQuery({
+    queryKey: ["email"],
+    queryFn: async () => {
+      const res = await fetch(`http://localhost:5000/advertised`);
+      const data = await res.json();
+      return data;
+    },
+  });
   return (
     <section>
-      <div class='relative px-4 py-12 sm:px-6 lg:py-16 lg:px-8'>
-        <div class='relative mx-auto max-w-7xl'>
-          <div class='grid max-w-lg gap-5 mx-auto lg:grid-cols-3 lg:max-w-none'>
-            {categories.map((cat1) => (
-              <BooksCategory key={cat1._id} cat1={cat1}></BooksCategory>
-            ))}
-          </div>
-        </div>
-      </div>
-
       <div className='ml-14 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-3'>
         <Link to='/category/action_and_adventure' class='block'>
           <img
@@ -71,6 +76,18 @@ const Home = () => {
           </p>
         </Link>
       </div>
+      {advertisedproducts.length > 0 && (
+        <div>
+          <h1 className='text-center text-3xl'>Advertised Products</h1>
+          <div className='grid grid-cols-3 gap-4'>
+            {advertisedproducts.map((product) => (
+              <AdvertisedCard
+                product={product}
+                key={product._id}></AdvertisedCard>
+            ))}
+          </div>
+        </div>
+      )}
     </section>
   );
 };

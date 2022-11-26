@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { AuthContext } from "../Context/UserContext";
+import Footer from "../Footer/Footer";
 import useAdmin from "../Hooks/useAdmin";
 import useBuyer from "../Hooks/useBuyer";
 import useSeller from "../Hooks/useSeller";
@@ -24,7 +25,7 @@ const DashboardLayout = () => {
         <div className='drawer-content '>
           <Outlet></Outlet>
         </div>
-        <div className='drawer-side bg-gradient-to-r from-gray-200 to-gray-300 rounded-xl'>
+        <div className='drawer-side bg-gradient-to-r from-gray-200 to-gray-300 '>
           <label htmlFor='dashboard-drawer' className='drawer-overlay'></label>
           <ul className='menu p-4 w-80 text-base-content'>
             {isAdmin && (
@@ -61,6 +62,8 @@ const DashboardLayout = () => {
           </ul>
         </div>
       </div>
+
+      <Footer></Footer>
     </div>
   );
 };

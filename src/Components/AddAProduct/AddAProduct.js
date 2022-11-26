@@ -26,6 +26,7 @@ const AddAProduct = () => {
       condition: condition,
       place: place,
       email: user.email,
+      userName: user.displayName,
       date: new Date(Date.now()).toISOString(),
     };
 
@@ -40,13 +41,14 @@ const AddAProduct = () => {
       .then((data) => {
         console.log(data);
         form.reset();
-        navigate("/");
+        navigate("/dashboard/myproducts");
       });
   };
   return (
     <div>
       <section class='bg-gray-100'>
-        <div class='mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8'>
+        <h1 className='px-8 text-3xl'>Add a product</h1>
+        <div class='mx-auto max-w-screen-xl px-4 py-6 sm:px-6 lg:px-8'>
           <div class='grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-5'>
             <div class='rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12'>
               <form action='' onSubmit={handleSubmitProduct} class='space-y-4'>

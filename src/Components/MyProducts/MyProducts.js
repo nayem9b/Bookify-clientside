@@ -1,22 +1,38 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Context/UserContext";
 import TableRow from "./Table/TableRow/TableRow";
-
+import { useQuery } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 const MyProducts = () => {
-  const [products, setProducts] = useState([]);
+  // const [products, setProducts] = useState([]);
   const [clickedProduct, setClickedProduct] = useState();
   const [click, setClick] = useState(1);
   const { user } = useContext(AuthContext);
-  useEffect(() => {
-    fetch(`http://localhost:5000/myproducts?email=${user.email}`)
-      .then((res) => res.json())
-      .then((data) => setProducts(data));
-  }, [user?.email]);
+  // useEffect(() => {
+  //   fetch(`http://localhost:5000/myproducts?email=${user.email}`)
+  //     .then((res) => res.json())
+  //     .then((data) => setProducts(data));
+  // }, [user?.email]);
+  const {
+    data: products = [],
+    refetch,
+    isLoading,
+  } = useQuery({
+    queryKey: ["email"],
+    queryFn: async () => {
+      const res = await fetch(
+        `http://localhost:5000/myproducts?email=${user.email}`
+      );
+      const data = await res.json();
+      return data;
+    },
+  });
 
   const handleAdvertise = (_id) => {
     fetch(`http://localhost:5000/myproduct/${_id}`)
       .then((res) => res.json())
       .then((data) => setClickedProduct(data));
+    toast.success("Product successfully advertised!");
     const {
       name,
       condition,
@@ -25,15 +41,20 @@ const MyProducts = () => {
       place,
       description,
       price,
+      date,
+      userName,
     } = clickedProduct;
     const advertise = {
       name: name,
       mobileNumber: mobileNumber,
       place: place,
+      price: price,
       description: description,
       originalPrice: originalPrice,
       condition: condition,
       email: user.email,
+      date: date,
+      userName: userName,
     };
     console.log(clickedProduct);
     console.log(name, mobileNumber, place, price);
@@ -58,13 +79,16 @@ const MyProducts = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        console.log("Product deleted");
+        toast.success("Product successfully deleted");
+        refetch();
       });
   };
 
   return (
     <div>
-      <h2 className='text-3xl'>All Products</h2>
+      <h2 className='text-3xl font-semibold text-sky-600'>
+        Double click on advertise to confirm advertisement
+      </h2>
       <div className='overflow-x-auto'>
         <table className='table w-full'>
           <thead>
@@ -74,6 +98,7 @@ const MyProducts = () => {
               <th>Price</th>
               <th>Delete</th>
               <th>Advertise</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>
@@ -100,6 +125,16 @@ const MyProducts = () => {
                     }}
                     className='btn btn-xs btn-danger'>
                     Advertise
+                  </button>
+                </td>
+                <td>
+                  <button
+                    onClick={() => {
+                      handleAdvertise(product._id);
+                      setClick(0);
+                    }}
+                    className='btn btn-xs btn-danger'>
+                    Mark as sold
                   </button>
                 </td>
               </tr>
