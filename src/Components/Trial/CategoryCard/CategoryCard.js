@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Context/UserContext";
 
 const CategoryCard = ({ category }) => {
+  const { user } = useContext(AuthContext);
   const { name, description, to } = category;
   return (
     <div>
-      <Link to={to} class='block'>
+      <Link to={user ? `${to}` : `/signin`} class='block'>
         <img
           alt='Art'
           src='https://m.media-amazon.com/images/I/51eeAWItwbL._AC_SY780_.jpg'

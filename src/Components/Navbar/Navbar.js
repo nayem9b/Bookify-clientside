@@ -9,8 +9,6 @@ import useSeller from "../Hooks/useSeller";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, logout } = useContext(AuthContext);
-
-  console.log(user);
   const [enabled, setEnabled] = useState(false);
   const [isAdmin] = useAdmin(user?.email);
   const [isBuyer] = useBuyer(user?.email);

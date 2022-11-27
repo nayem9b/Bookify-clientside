@@ -58,7 +58,7 @@ const BookingModal = ({ item, price }) => {
             <input
               type='text'
               disabled
-              value={user.email}
+              value={user?.email}
               className='input w-full input-bordered '
             />
 

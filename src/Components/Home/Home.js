@@ -15,7 +15,6 @@ const Home = () => {
       .then((res) => res.json())
       .then((data) => setCategories(data));
   }, []);
-  console.log(categories);
   // useEffect(() => {
   //   fetch("http://localhost:5000/myproduct/:id")
   //     .then((res) => res.json())

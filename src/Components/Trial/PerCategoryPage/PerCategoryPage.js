@@ -21,7 +21,8 @@ const PerCategoryPage = () => {
         <TrialBookDetailsCard
           book={book}
           setItem={setItem}
-          setPrice={setPrice}></TrialBookDetailsCard>
+          setPrice={setPrice}
+          key={book._id}></TrialBookDetailsCard>
       ))}
       <BookingModal item={item} price={price}></BookingModal>
     </div>

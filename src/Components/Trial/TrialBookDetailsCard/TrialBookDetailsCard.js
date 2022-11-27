@@ -2,10 +2,14 @@ import React, { useContext } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../Context/UserContext";
 import useAdmin from "../../Hooks/useAdmin";
+import useBuyer from "../../Hooks/useBuyer";
+import useSeller from "../../Hooks/useSeller";
 
 const TrialBookDetailsCard = ({ book, setItem, setPrice }) => {
   const { user } = useContext(AuthContext);
   const [isAdmin] = useAdmin(user?.email);
+  const [isBuyer] = useBuyer(user?.email);
+  const [isSeller] = useSeller(user?.email);
   const {
     name,
     location,
@@ -65,7 +69,7 @@ const TrialBookDetailsCard = ({ book, setItem, setPrice }) => {
             <span>Posted Time:</span> {posted_time}
           </p>
           <div className='card-actions lg:justify-end'>
-            {!isAdmin && (
+            {!isSeller ? (
               <div className='grid grid-cols-2 gap-2 '>
                 <button
                   class='group relative inline-block overflow-hidden border border-indigo-600 px-4 py-3 focus:outline-none focus:ring'
@@ -86,6 +90,12 @@ const TrialBookDetailsCard = ({ book, setItem, setPrice }) => {
                   Book now
                 </label>
               </div>
+            ) : (
+              <>
+                <h1 className='text-lg font-bold'>
+                  You need to be a buyer to purchase this
+                </h1>
+              </>
             )}
           </div>
         </div>
