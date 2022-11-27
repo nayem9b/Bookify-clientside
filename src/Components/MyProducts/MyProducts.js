@@ -45,6 +45,7 @@ const MyProducts = () => {
       image,
       userImage,
       userName,
+      isVerified,
     } = clickedProduct;
 
     const advertise = {
@@ -60,6 +61,7 @@ const MyProducts = () => {
       userName: userName,
       image: image,
       userImage: userImage,
+      isVerified: isVerified,
     };
     console.log(clickedProduct);
     console.log(name, mobileNumber, place, price);

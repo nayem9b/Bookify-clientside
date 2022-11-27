@@ -72,7 +72,6 @@ const SignUp = () => {
             email: email,
             role: role,
             image: imgData.data.url,
-            isVerified: false,
           };
           fetch(`http://localhost:5000/userInfo`, {
             method: "POST",

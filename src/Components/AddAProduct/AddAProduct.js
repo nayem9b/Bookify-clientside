@@ -7,7 +7,7 @@ const AddAProduct = () => {
   const [condition, setCondition] = useState();
   const [place, setPlace] = useState();
   const [usersInfo, setUsersInfo] = useState([]);
-  // console.log(postImage);
+  console.log(usersInfo);
 
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
@@ -52,6 +52,7 @@ const AddAProduct = () => {
             userName: user.displayName,
             image: imgData.data.url,
             userImage: usersInfo.image,
+            isVerified: false,
             date: new Date(Date.now()).toISOString(),
           };
 
