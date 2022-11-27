@@ -12,6 +12,7 @@ const SignUp = () => {
   const auth = getAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const [postImage, setPostImage] = useState("");
   const [role, setRole] = useState();
   console.log(role);
   const from = location.state?.from?.pathname || "/";
@@ -24,6 +25,7 @@ const SignUp = () => {
           name: user.displayName,
           email: user.email,
           role: "Seller",
+          image: user.photoURL,
         };
         fetch(`http://localhost:5000/userInfo`, {
           method: "POST",
@@ -50,6 +52,24 @@ const SignUp = () => {
     const confirmPassword = form.passwordConfirmation.value;
     console.log(fullName, email, password, confirmPassword);
 
+    // Image upload section here
+    const image = form.image.files[0];
+    const formData = new FormData();
+    formData.append("image", image);
+    const url = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_IMG_BB_KEY}`;
+
+    fetch(url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((imgData) => {
+        if (imgData.success) {
+          setPostImage(imgData.data.url);
+        }
+      });
+
+    console.log(postImage);
     if (password === confirmPassword) {
       userSignUp(email, password)
         .then((result) => {
@@ -58,7 +78,7 @@ const SignUp = () => {
           updateProfile(auth.currentUser, {
             displayName: fullName,
           }).catch((error) => console.log(error));
-          navigate(from, { replace: true });
+          // navigate(from, { replace: true });
         })
         .catch((error) => console.log(error));
     } else {
@@ -68,6 +88,7 @@ const SignUp = () => {
       name: fullName,
       email: email,
       role: role,
+      image: postImage,
     };
     fetch(`http://localhost:5000/userInfo`, {
       method: "POST",
@@ -138,11 +159,13 @@ const SignUp = () => {
                       </label>
                     </div>
                   </fieldset>
+                </div>
 
+                <div class='col-span-6'>
                   <label
                     for='FirstName'
                     class='block text-sm font-medium text-gray-700'>
-                    Full Name
+                    Full Name <span className='text-red-600 text-lg'>*</span>
                   </label>
 
                   <input
@@ -152,13 +175,27 @@ const SignUp = () => {
                     required
                     class='mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm'
                   />
-                </div>
 
-                <div class='col-span-6'>
+                  <div>
+                    <label
+                      htmlFor='image'
+                      className='block mb-2 mt-2 text-sm font-medium text-gray-700 '>
+                      Select Image{" "}
+                      <span className='text-red-600 text-lg'>*</span>
+                    </label>
+                    <input
+                      required
+                      type='file'
+                      id='image'
+                      name='image'
+                      accept='image/*'
+                      className='file-input file-input-bordered w-full max-w-xs'
+                    />
+                  </div>
                   <label
                     for='Email'
-                    class='block text-sm font-medium text-gray-700'>
-                    Email
+                    class='block text-sm font-medium text-gray-700 mt-2'>
+                    Email <span className='text-red-600 text-lg'>*</span>
                   </label>
 
                   <input
@@ -174,7 +211,7 @@ const SignUp = () => {
                   <label
                     for='Password'
                     class='block text-sm font-medium text-gray-700'>
-                    Password
+                    Password <span className='text-red-600 text-lg'>*</span>
                   </label>
 
                   <input
@@ -190,7 +227,8 @@ const SignUp = () => {
                   <label
                     for='PasswordConfirmation'
                     class='block text-sm font-medium text-gray-700'>
-                    Password Confirmation
+                    Password Confirmation{" "}
+                    <span className='text-red-600 text-lg'>*</span>
                   </label>
 
                   <input
@@ -200,36 +238,6 @@ const SignUp = () => {
                     required
                     class='mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm'
                   />
-                </div>
-
-                <div class='col-span-6'>
-                  <label for='MarketingAccept' class='flex gap-4'>
-                    <input
-                      type='checkbox'
-                      id='MarketingAccept'
-                      name='marketing_accept'
-                      class='h-5 w-5 rounded-md border-gray-200 bg-white shadow-sm'
-                    />
-
-                    <span class='text-sm text-gray-700'>
-                      I want to receive emails about events, product updates and
-                      company announcements.
-                    </span>
-                  </label>
-                </div>
-
-                <div class=' col-span-6'>
-                  <p class='  text-sm text-gray-500'>
-                    By creating an account, you agree to our
-                    <span href='#' class='text-gray-700 underline ml-1 mr-1'>
-                      terms and conditions
-                    </span>
-                    and
-                    <span href='#' class='text-gray-700 underline ml-1'>
-                      privacy policy
-                    </span>
-                    .
-                  </p>
                 </div>
 
                 <div class='col-span-6 sm:flex sm:items-center sm:gap-4'>

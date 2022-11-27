@@ -42,8 +42,10 @@ const MyProducts = () => {
       description,
       price,
       date,
+      image,
       userName,
     } = clickedProduct;
+
     const advertise = {
       name: name,
       mobileNumber: mobileNumber,
@@ -55,6 +57,7 @@ const MyProducts = () => {
       email: user.email,
       date: date,
       userName: userName,
+      image: image,
     };
     console.log(clickedProduct);
     console.log(name, mobileNumber, place, price);

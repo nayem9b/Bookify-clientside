@@ -9,7 +9,6 @@ const AddAProduct = () => {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   console.log(user.email);
-  const imgKey = process.env.REACT_APP_IMG_BB_KEY;
   const handleSubmitProduct = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -51,7 +50,6 @@ const AddAProduct = () => {
       date: new Date(Date.now()).toISOString(),
     };
 
-    console.log(postImage, addedProduct.image);
     fetch("http://localhost:5000/addedProducts", {
       method: "POST",
       headers: {
