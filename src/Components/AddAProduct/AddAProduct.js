@@ -3,11 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/UserContext";
 
 const AddAProduct = () => {
+  const [postImage, setPostImage] = useState("");
   const [condition, setCondition] = useState();
   const [place, setPlace] = useState();
   const [usersInfo, setUsersInfo] = useState([]);
-  console.log(usersInfo.image);
-  const [postImage, setPostImage] = useState("");
+  // console.log(postImage);
+
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   console.log(user.email);
@@ -39,37 +40,38 @@ const AddAProduct = () => {
       .then((res) => res.json())
       .then((imgData) => {
         if (imgData.success) {
-          setPostImage(imgData.data.url);
+          const addedProduct = {
+            name: name,
+            price: price,
+            mobileNumber: mobileNumber,
+            originalPrice: originalPrice,
+            description: description,
+            condition: condition,
+            place: place,
+            email: user.email,
+            userName: user.displayName,
+            image: imgData.data.url,
+            userImage: usersInfo.image,
+            date: new Date(Date.now()).toISOString(),
+          };
+
+          fetch("http://localhost:5000/addedProducts", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(addedProduct),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+              form.reset();
+              // navigate("/dashboard/myproducts");
+            });
         }
-      });
-
-    const addedProduct = {
-      name: name,
-      price: price,
-      mobileNumber: mobileNumber,
-      originalPrice: originalPrice,
-      description: description,
-      condition: condition,
-      place: place,
-      email: user.email,
-      userName: user.displayName,
-      image: postImage,
-      userImage: usersInfo.image,
-      date: new Date(Date.now()).toISOString(),
-    };
-
-    fetch("http://localhost:5000/addedProducts", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(addedProduct),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        form.reset();
-        // navigate("/dashboard/myproducts");
+        // console.log(imgData);
+        // console.log(imgData.data.url);
+        // setPostImage(imgData.data.url);
       });
   };
   return (
@@ -95,13 +97,7 @@ const AddAProduct = () => {
                   <label htmlFor='image' className='block mb-2 '>
                     Select Image:
                   </label>
-                  <input
-                    required
-                    type='file'
-                    id='image'
-                    name='image'
-                    accept='image/*'
-                  />
+                  <input type='file' id='image' name='image' accept='image/*' />
                 </div>
                 <div>
                   <h1>Price</h1>

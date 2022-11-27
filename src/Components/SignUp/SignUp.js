@@ -8,11 +8,12 @@ import useTitle from "../Hooks/UseTitle";
 import book from "../../Images/31821-share-everythin-moneybooks.json";
 import Lottie from "lottie-react";
 const SignUp = () => {
-  useTitle("Sign Up");
+  const [postImage, setPostImage] = useState("");
+  // console.log(postImage);
   const auth = getAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const [postImage, setPostImage] = useState("");
+
   const [role, setRole] = useState();
   console.log(role);
   const from = location.state?.from?.pathname || "/";
@@ -56,6 +57,7 @@ const SignUp = () => {
     const image = form.image.files[0];
     const formData = new FormData();
     formData.append("image", image);
+    console.log(formData);
     const url = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_IMG_BB_KEY}`;
 
     fetch(url, {
@@ -65,11 +67,25 @@ const SignUp = () => {
       .then((res) => res.json())
       .then((imgData) => {
         if (imgData.success) {
-          setPostImage(imgData.data.url);
+          const userInfo = {
+            name: fullName,
+            email: email,
+            role: role,
+            image: imgData.data.url,
+          };
+          fetch(`http://localhost:5000/userInfo`, {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(userInfo),
+          })
+            .then((res) => res.json())
+            .then((data) => console.log(data));
         }
       });
 
-    console.log(postImage);
+    // console.log(postImage);
     if (password === confirmPassword) {
       userSignUp(email, password)
         .then((result) => {
@@ -78,29 +94,12 @@ const SignUp = () => {
           updateProfile(auth.currentUser, {
             displayName: fullName,
           }).catch((error) => console.log(error));
-          navigate(from, { replace: true });
+          // navigate(from, { replace: true });
         })
         .catch((error) => console.log(error));
     } else {
       toast.error("Password didn't match");
     }
-    const userInfo = {
-      name: fullName,
-      email: email,
-      role: role,
-      image: postImage,
-    };
-    fetch(`http://localhost:5000/userInfo`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(userInfo),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
-
-    console.log(userInfo);
   };
 
   return (
