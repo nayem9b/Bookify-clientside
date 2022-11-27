@@ -1,9 +1,11 @@
 import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../Context/UserContext";
+import useAdmin from "../Hooks/useAdmin";
 
 const BookDetailsCard3 = ({ book, setItem, setPrice }) => {
   const { user } = useContext(AuthContext);
+  const [isAdmin] = useAdmin(user?.email);
   const {
     name,
     location,
@@ -62,26 +64,28 @@ const BookDetailsCard3 = ({ book, setItem, setPrice }) => {
             <span>Posted Time:</span> {posted_time}
           </p>
           <div className='card-actions lg:justify-end'>
-            <div className='grid grid-cols-2 gap-2 '>
-              <button
-                class='group relative inline-block overflow-hidden border border-indigo-600 px-4 py-3 focus:outline-none focus:ring'
-                onClick={handleAddToWishlist}>
-                <span class='absolute inset-y-0 left-0 w-[2px] bg-indigo-600 transition-all group-hover:w-full group-active:bg-indigo-500'></span>
+            {!isAdmin && (
+              <div className='grid grid-cols-2 gap-2 '>
+                <button
+                  class='group relative inline-block overflow-hidden border border-indigo-600 px-4 py-3 focus:outline-none focus:ring'
+                  onClick={handleAddToWishlist}>
+                  <span class='absolute inset-y-0 left-0 w-[2px] bg-indigo-600 transition-all group-hover:w-full group-active:bg-indigo-500'></span>
 
-                <span class='relative text-sm font-medium text-indigo-600 transition-colors group-hover:text-white'>
-                  Wishlist
-                </span>
-              </button>
-              <label
-                htmlFor='booking-modal'
-                className='btn text-black border-none bg-[radial-gradient(ellipse_at_left,_var(--tw-gradient-stops))] from-pink-300 via-purple-300 to-indigo-300'
-                onClick={() => {
-                  setItem(name);
-                  setPrice(resale_price);
-                }}>
-                Book now
-              </label>
-            </div>
+                  <span class='relative text-sm font-medium text-indigo-600 transition-colors group-hover:text-white'>
+                    Wishlist
+                  </span>
+                </button>
+                <label
+                  htmlFor='booking-modal'
+                  className='btn text-black border-none bg-[radial-gradient(ellipse_at_left,_var(--tw-gradient-stops))] from-pink-300 via-purple-300 to-indigo-300'
+                  onClick={() => {
+                    setItem(name);
+                    setPrice(resale_price);
+                  }}>
+                  Book now
+                </label>
+              </div>
+            )}
           </div>
         </div>
       </div>

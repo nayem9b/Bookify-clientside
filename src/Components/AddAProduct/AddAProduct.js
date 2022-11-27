@@ -5,9 +5,11 @@ import { AuthContext } from "../Context/UserContext";
 const AddAProduct = () => {
   const [condition, setCondition] = useState();
   const [place, setPlace] = useState();
+  const [postImage, setPostImage] = useState("");
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   console.log(user.email);
+  const imgKey = process.env.REACT_APP_IMG_BB_KEY;
   const handleSubmitProduct = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -16,6 +18,23 @@ const AddAProduct = () => {
     const mobileNumber = form.mobileNumber.value;
     const originalPrice = form.originalPrice.value;
     const description = form.description.value;
+
+    // Image upload section here
+    const image = form.image.files[0];
+    const formData = new FormData();
+    formData.append("image", image);
+    const url = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_IMG_BB_KEY}`;
+
+    fetch(url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((imgData) => {
+        if (imgData.success) {
+          setPostImage(imgData.data.url);
+        }
+      });
 
     const addedProduct = {
       name: name,
@@ -27,9 +46,12 @@ const AddAProduct = () => {
       place: place,
       email: user.email,
       userName: user.displayName,
+      userImage: user?.photoURL,
+      image: postImage,
       date: new Date(Date.now()).toISOString(),
     };
 
+    console.log(postImage, addedProduct.image);
     fetch("http://localhost:5000/addedProducts", {
       method: "POST",
       headers: {
@@ -61,6 +83,18 @@ const AddAProduct = () => {
                     class='w-full rounded-lg border-gray-200 p-3 text-sm'
                     name='name'
                     type='text'
+                  />
+                </div>
+                <div>
+                  <label htmlFor='image' className='block mb-2 '>
+                    Select Image:
+                  </label>
+                  <input
+                    required
+                    type='file'
+                    id='image'
+                    name='image'
+                    accept='image/*'
                   />
                 </div>
                 <div>

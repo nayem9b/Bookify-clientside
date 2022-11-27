@@ -5,6 +5,7 @@ import BooksCategory from "../BooksCategory/BooksCategory";
 import { useQuery } from "@tanstack/react-query";
 import AdvertisedCard from "../AdvertisedCard/AdvertisedCard";
 import { AuthContext } from "../Context/UserContext";
+import { Content } from "../Content/Content";
 
 const Home = () => {
   const [categories, setCategories] = useState([]);
@@ -36,6 +37,7 @@ const Home = () => {
   const { user } = useContext(AuthContext);
   return (
     <section>
+      <Content></Content>
       <div className='ml-14 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-3'>
         <Link
           to={user ? "/category/action_and_adventure" : "/signin"}
