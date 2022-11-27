@@ -17,6 +17,7 @@ import Root from "../Root/Root";
 import SignIn from "../SignIn/SignIn";
 import SignUp from "../SignUp/SignUp";
 import SimplePage from "../SimplePage/SimplePage";
+import PerCategoryPage from "../Trial/PerCategoryPage/PerCategoryPage";
 import Wishlist from "../Wishlist/Wishlist";
 import AdminRoute from "./AdminRoute";
 import BuyerRoute from "./BuyerRoute";
@@ -36,21 +37,27 @@ export const router = createBrowserRouter([
         element: <SignIn></SignIn>,
       },
       {
-        path: "/category/action_and_adventure",
-        element: <BookCategory></BookCategory>,
-        loader: () =>
-          fetch("http://localhost:5000/category/action_and_adventure"),
+        path: "/category/:id",
+        element: <PerCategoryPage></PerCategoryPage>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/category/${params.id}`),
       },
-      {
-        path: "/category/classics",
-        element: <BookCategory2></BookCategory2>,
-        loader: () => fetch("http://localhost:5000/category/classics"),
-      },
-      {
-        path: "/category/memoir",
-        element: <BookCategory3></BookCategory3>,
-        loader: () => fetch("http://localhost:5000/category/memoir"),
-      },
+      // {
+      //   path: "/category/action_and_adventure",
+      //   element: <BookCategory></BookCategory>,
+      //   loader: () =>
+      //     fetch("http://localhost:5000/category/action_and_adventure"),
+      // },
+      // {
+      //   path: "/category/classics",
+      //   element: <BookCategory2></BookCategory2>,
+      //   loader: () => fetch("http://localhost:5000/category/classics"),
+      // },
+      // {
+      //   path: "/category/memoir",
+      //   element: <BookCategory3></BookCategory3>,
+      //   loader: () => fetch("http://localhost:5000/category/memoir"),
+      // },
 
       {
         path: "/signup",

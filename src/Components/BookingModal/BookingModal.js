@@ -90,7 +90,7 @@ const BookingModal = ({ item, price }) => {
             />
             <br />
             <input
-              className='btn btn-accent w-full'
+              className='btn bg-indigo-700 hover:bg-indigo-800 w-full'
               type='submit'
               value='Submit'
             />

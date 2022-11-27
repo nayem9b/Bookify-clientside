@@ -97,7 +97,13 @@ const AddAProduct = () => {
                   <label htmlFor='image' className='block mb-2 '>
                     Select Image:
                   </label>
-                  <input type='file' id='image' name='image' accept='image/*' />
+                  <input
+                    type='file'
+                    id='image'
+                    name='image'
+                    accept='image/*'
+                    className='file-input file-input-bordered w-full max-w-xs'
+                  />
                 </div>
                 <div>
                   <h1>Price</h1>
