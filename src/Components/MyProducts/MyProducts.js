@@ -43,6 +43,7 @@ const MyProducts = () => {
       price,
       date,
       image,
+      userImage,
       userName,
     } = clickedProduct;
 
@@ -58,6 +59,7 @@ const MyProducts = () => {
       date: date,
       userName: userName,
       image: image,
+      userImage: userImage,
     };
     console.log(clickedProduct);
     console.log(name, mobileNumber, place, price);

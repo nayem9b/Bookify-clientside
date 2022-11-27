@@ -1,14 +1,22 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/UserContext";
 
 const AddAProduct = () => {
   const [condition, setCondition] = useState();
   const [place, setPlace] = useState();
+  const [usersInfo, setUsersInfo] = useState([]);
+  console.log(usersInfo.image);
   const [postImage, setPostImage] = useState("");
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   console.log(user.email);
+  useEffect(() => {
+    fetch(`http://localhost:5000/users/singleuser/${user.email}`)
+      .then((res) => res.json())
+      .then((data) => setUsersInfo(data));
+  }, [user.email]);
+
   const handleSubmitProduct = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -45,8 +53,8 @@ const AddAProduct = () => {
       place: place,
       email: user.email,
       userName: user.displayName,
-      userImage: user?.photoURL,
       image: postImage,
+      userImage: usersInfo.image,
       date: new Date(Date.now()).toISOString(),
     };
 
@@ -61,7 +69,7 @@ const AddAProduct = () => {
       .then((data) => {
         console.log(data);
         form.reset();
-        navigate("/dashboard/myproducts");
+        // navigate("/dashboard/myproducts");
       });
   };
   return (

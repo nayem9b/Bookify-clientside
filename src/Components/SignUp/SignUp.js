@@ -78,7 +78,7 @@ const SignUp = () => {
           updateProfile(auth.currentUser, {
             displayName: fullName,
           }).catch((error) => console.log(error));
-          // navigate(from, { replace: true });
+          navigate(from, { replace: true });
         })
         .catch((error) => console.log(error));
     } else {

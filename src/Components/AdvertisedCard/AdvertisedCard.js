@@ -16,6 +16,7 @@ const AdvertisedCard = ({ product }) => {
     image,
     place,
     userName,
+    userImage,
   } = product;
 
   // From here
@@ -71,7 +72,7 @@ const AdvertisedCard = ({ product }) => {
               <div class='flex items-center'>
                 <img
                   class='object-cover h-10 rounded-full'
-                  src='https://images.unsplash.com/photo-1586287011575-a23134f797f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=48&q=60'
+                  src={userImage}
                   alt='Avatar'
                 />
                 <a
