@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/UserContext";
 
@@ -7,7 +8,8 @@ const AddAProduct = () => {
   const [condition, setCondition] = useState();
   const [place, setPlace] = useState();
   const [usersInfo, setUsersInfo] = useState([]);
-  console.log(usersInfo);
+  const [category, setCategory] = useState("");
+  console.log(category);
 
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
@@ -53,6 +55,7 @@ const AddAProduct = () => {
             image: imgData.data.url,
             userImage: usersInfo.image,
             isVerified: false,
+            category: category,
             date: new Date(Date.now()).toISOString(),
           };
 
@@ -66,8 +69,9 @@ const AddAProduct = () => {
             .then((res) => res.json())
             .then((data) => {
               console.log(data);
+              toast.success("Product added");
               form.reset();
-              // navigate("/dashboard/myproducts");
+              navigate("/dashboard/myproducts");
             });
         }
         // console.log(imgData);
@@ -84,7 +88,10 @@ const AddAProduct = () => {
             <div class='rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12'>
               <form action='' onSubmit={handleSubmitProduct} class='space-y-4'>
                 <div>
-                  <h1>Name of the book</h1>
+                  <h1>
+                    Name of the book
+                    <span className='text-red-600 text-lg'>*</span>
+                  </h1>
                   <label class='sr-only' for='name'>
                     Name
                   </label>
@@ -92,22 +99,28 @@ const AddAProduct = () => {
                     class='w-full rounded-lg border-gray-200 p-3 text-sm'
                     name='name'
                     type='text'
+                    required
                   />
                 </div>
                 <div>
                   <label htmlFor='image' className='block mb-2 '>
                     Select Image:
+                    <span className='text-red-600 text-lg'>*</span>
                   </label>
                   <input
                     type='file'
                     id='image'
                     name='image'
                     accept='image/*'
+                    required
                     className='file-input file-input-bordered w-full max-w-xs'
                   />
                 </div>
                 <div>
-                  <h1>Price</h1>
+                  <h1>
+                    Price
+                    <span className='text-red-600 text-lg'>*</span>
+                  </h1>
                   <label class='sr-only' for='name'>
                     Price
                   </label>
@@ -116,10 +129,14 @@ const AddAProduct = () => {
                     //   placeholder={user.displayName}
                     type='text'
                     name='price'
+                    required
                   />
                 </div>
                 <div>
-                  <h1>Condition Type</h1>
+                  <h1>
+                    Condition Type
+                    <span className='text-red-600 text-lg'>*</span>
+                  </h1>
 
                   <fieldset class='flex flex-wrap gap-3'>
                     <div>
@@ -192,7 +209,69 @@ const AddAProduct = () => {
                   </fieldset>
                 </div>
                 <div>
-                  <h1>Mobile Number</h1>
+                  <h1>
+                    Category
+                    <span className='text-red-600 text-lg'>*</span>
+                  </h1>
+
+                  <fieldset class='flex flex-wrap gap-3'>
+                    <div>
+                      <input
+                        type='radio'
+                        name='action_and_adventure'
+                        value='action_and_adventure'
+                        id='action_and_adventure'
+                        class='peer hidden'
+                        onClick={(e) => setCategory(e.target.value)}
+                      />
+
+                      <label
+                        for='action_and_adventure'
+                        class='flex cursor-pointer items-center justify-center rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white'>
+                        <p class='text-sm font-medium'>Action and Adventure</p>
+                      </label>
+                    </div>
+
+                    <div>
+                      <input
+                        type='radio'
+                        name='classics'
+                        value='classics'
+                        id='classics1'
+                        class='peer hidden'
+                        onClick={(e) => setCategory(e.target.value)}
+                      />
+
+                      <label
+                        for='classics1'
+                        class='flex cursor-pointer items-center justify-center rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white'>
+                        <p class='text-sm font-medium'>Classics</p>
+                      </label>
+                    </div>
+
+                    <div>
+                      <input
+                        type='radio'
+                        name='memoir'
+                        value='memoir'
+                        id='memoir'
+                        class='peer hidden'
+                        onClick={(e) => setCategory(e.target.value)}
+                      />
+
+                      <label
+                        for='memoir'
+                        class='flex cursor-pointer items-center justify-center rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white'>
+                        <p class='text-sm font-medium'>Memoir</p>
+                      </label>
+                    </div>
+                  </fieldset>
+                </div>
+                <div>
+                  <h1>
+                    Mobile Number{" "}
+                    <span className='text-red-600 text-lg'>*</span>
+                  </h1>
                   <label class='sr-only' for='name'>
                     Mobile Number
                   </label>
@@ -200,9 +279,12 @@ const AddAProduct = () => {
                     class='w-full rounded-lg border-gray-200 p-3 text-sm'
                     type='text'
                     name='mobileNumber'
+                    required
                   />
                 </div>
-                <h1>Location</h1>
+                <h1>
+                  Location <span className='text-red-600 text-lg'>*</span>
+                </h1>
                 <fieldset class='grid grid-cols-3 gap-4'>
                   <div>
                     <input
@@ -263,11 +345,14 @@ const AddAProduct = () => {
                     class='w-full rounded-lg border-gray-200 p-3 text-sm'
                     name='originalPrice'
                     type='text'
+                    required
                   />
                 </div>
 
                 <div>
-                  <h1>Description</h1>
+                  <h1>
+                    Description <span className='text-red-600 text-lg'>*</span>
+                  </h1>
                   <label class='sr-only' for='message'>
                     Message
                   </label>
@@ -276,6 +361,7 @@ const AddAProduct = () => {
                     placeholder='Description of the product'
                     rows='8'
                     name='description'
+                    required
                     id='message'></textarea>
                 </div>
 

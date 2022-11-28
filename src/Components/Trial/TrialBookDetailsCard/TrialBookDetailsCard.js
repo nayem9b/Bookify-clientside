@@ -5,27 +5,33 @@ import useAdmin from "../../Hooks/useAdmin";
 import useBuyer from "../../Hooks/useBuyer";
 import useSeller from "../../Hooks/useSeller";
 
-const TrialBookDetailsCard = ({ book, setItem, setPrice }) => {
+const TrialBookDetailsCard = ({ book, setItem, setPrice, setPicture }) => {
   const { user } = useContext(AuthContext);
   const [isAdmin] = useAdmin(user?.email);
   const [isBuyer] = useBuyer(user?.email);
   const [isSeller] = useSeller(user?.email);
   const {
     name,
-    location,
-    original_price,
-    posted_time,
-    picture,
-    resale_price,
-    years_of_use,
+    description,
+    price,
+    mobileNumber,
+    originalPrice,
+    date,
+    image,
+    condition,
+    place,
+    email,
+    userName,
+    isVerified,
+    category,
   } = book;
-
+  console.log(isVerified);
   const wishlist = {
     name: name,
-    price: resale_price,
+    price: price,
     email: user?.email,
     userImage: user?.photoURL,
-    productImage: picture,
+    productImage: image,
   };
   const handleAddToWishlist = () => {
     fetch("http://localhost:5000/wishlist", {
@@ -44,29 +50,51 @@ const TrialBookDetailsCard = ({ book, setItem, setPrice }) => {
     <div>
       <div className='card lg:card-side bg-base-100 shadow-xl'>
         <figure>
-          <img className='h-96 w-80' src={picture} alt='Album' />
+          <img className='h-96 w-80' src={image} alt='Album' />
         </figure>
         <div className='card-body'>
           <h2 className='card-title text-2xl'>{name}</h2>
-          <p>
+          <p className='text-lg font-bold'>
             {" "}
-            <span>Resale Price:</span> {resale_price}
+            <span>Resale Price:</span> {price}
           </p>
           <p>
+            {" "}
+            <span>Condition:</span> {condition}
+          </p>
+
+          <p>
+            {" "}
+            <span> Seller: </span> {userName}
+          </p>
+          <p>
+            {" "}
+            <span>Phone Number:</span> {mobileNumber}
+          </p>
+          <p>
+            {" "}
+            <span>Resale Price:</span> {price}
+          </p>
+
+          {/* <p>
             {" "}
             <span>Original Price:</span> {original_price}
-          </p>
-          <p>
+          </p> */}
+          {/* <p>
             {" "}
             <span>Years of use:</span> {years_of_use}
+          </p> */}
+          <p>
+            {" "}
+            <span>Location:</span> {place}
           </p>
           <p>
             {" "}
-            <span>Location:</span> {location}
+            <span>Description:</span> {description}
           </p>
           <p>
             {" "}
-            <span>Posted Time:</span> {posted_time}
+            <span>Posted Time:</span> {date}
           </p>
           <div className='card-actions lg:justify-end'>
             {isBuyer ? (
@@ -85,7 +113,7 @@ const TrialBookDetailsCard = ({ book, setItem, setPrice }) => {
                   className='btn text-black border-none bg-[radial-gradient(ellipse_at_left,_var(--tw-gradient-stops))] from-pink-300 via-purple-300 to-indigo-300'
                   onClick={() => {
                     setItem(name);
-                    setPrice(resale_price);
+                    setPrice(price);
                   }}>
                   Book now
                 </label>

@@ -9,6 +9,7 @@ const PerCategoryPage = () => {
   const [books, setBooks] = useState([]);
   const [item, setItem] = useState();
   const [price, setPrice] = useState();
+  const [picture, setPicture] = useState();
 
   useEffect(() => {
     fetch(`http://localhost:5000/category/${id}`)
@@ -22,9 +23,10 @@ const PerCategoryPage = () => {
           book={book}
           setItem={setItem}
           setPrice={setPrice}
-          key={book._id}></TrialBookDetailsCard>
+          key={book._id}
+          setPicture={setPicture}></TrialBookDetailsCard>
       ))}
-      <BookingModal item={item} price={price}></BookingModal>
+      <BookingModal item={item} price={price} picture={picture}></BookingModal>
     </div>
   );
 };

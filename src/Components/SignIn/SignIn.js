@@ -36,7 +36,7 @@ const SignIn = () => {
 
             navigate(from, { replace: true });
           });
-        navigate(from, { replace: true });
+        navigate("/");
         console.log(user);
       })
       .catch((error) => console.log(error));

@@ -72,7 +72,7 @@ const AllSeller = () => {
                 <td>
                   {" "}
                   <button
-                    className='btn btn-warning btn-sm'
+                    className='btn bg-yellow-400 border-none text-black hover:bg-yellow-500 btn-sm'
                     onClick={() => handleEdit(seller._id)}>
                     Verify
                   </button>{" "}
@@ -80,7 +80,7 @@ const AllSeller = () => {
 
                 <td>
                   <button
-                    className='btn btn-error btn-sm'
+                    className='btn btn-error hover:bg-red-700 btn-sm'
                     onClick={() => handleDelete(seller._id)}>
                     Delete
                   </button>

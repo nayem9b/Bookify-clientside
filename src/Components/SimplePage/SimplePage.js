@@ -1,11 +1,11 @@
 import React from "react";
 import Lottie from "lottie-react";
-import nothing from "../../Images/127760-nothing.json";
+import dashboard from "../../Images/76878-dashboard-elements.json";
 const SimplePage = () => {
   return (
     <div>
       <div className=' flex justify-center '>
-        <Lottie animationData={nothing} loop={true} />
+        <Lottie animationData={dashboard} loop={true} />
       </div>
     </div>
   );

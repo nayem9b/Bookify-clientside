@@ -14,7 +14,7 @@ const SignUp = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [role, setRole] = useState();
+  const [role, setRole] = useState("Seller");
   console.log(role);
   const from = location.state?.from?.pathname || "/";
   const { googleSignIn, userSignUp } = useContext(AuthContext);
@@ -25,7 +25,7 @@ const SignUp = () => {
         const userInfo = {
           name: user.displayName,
           email: user.email,
-          role: "Seller",
+          role: "Buyer",
           image: user.photoURL,
         };
         fetch(`http://localhost:5000/userInfo`, {
@@ -37,7 +37,7 @@ const SignUp = () => {
         })
           .then((res) => res.json())
           .then((data) => console.log(data));
-        navigate(from, { replace: true });
+        navigate("/");
         console.log(user);
       })
       .catch((error) => console.log(error));
@@ -94,7 +94,7 @@ const SignUp = () => {
           updateProfile(auth.currentUser, {
             displayName: fullName,
           }).catch((error) => console.log(error));
-          // navigate(from, { replace: true });
+          navigate("/");
         })
         .catch((error) => console.log(error));
     } else {

@@ -26,7 +26,7 @@ const MyOrders = () => {
             {booked.map((book, i) => (
               <tr key={book._id}>
                 <th>{i + 1}</th>
-                <td>{book.name}</td>
+                <td>{book.productName}</td>
                 <td>
                   {" "}
                   {book.price} <span className='text-2xl'>৳</span>{" "}

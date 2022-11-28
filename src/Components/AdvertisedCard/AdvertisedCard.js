@@ -94,9 +94,7 @@ const AdvertisedCard = ({ product }) => {
                       Add to wishlist
                     </button>
 
-                    <button
-                      class='inline-block rounded bg-indigo-600 px-6 py-2 text-sm font-medium text-white transition hover:rotate-2 hover:scale-110 focus:outline-none focus:ring active:bg-indigo-500'
-                      href='/download'>
+                    <button class='inline-block rounded bg-indigo-600 px-6 py-2 text-sm font-medium text-white transition hover:rotate-2 hover:scale-110 focus:outline-none focus:ring active:bg-indigo-500'>
                       Book now
                     </button>
                   </div>
