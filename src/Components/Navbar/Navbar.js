@@ -33,6 +33,11 @@ const Navbar = () => {
             </span>
           </Link>
           <ul class='flex items-center hidden space-x-8 lg:flex'>
+            <li>
+              <Link to='/blogs' className='font-semibold'>
+                Blogs
+              </Link>
+            </li>
             {user?.uid ? (
               <>
                 <li>
@@ -68,7 +73,7 @@ const Navbar = () => {
                 </li>
               </>
             )}
-
+            {/* 
             {isBuyer && (
               <>
                 <li>
@@ -82,7 +87,7 @@ const Navbar = () => {
                   <Link to='/dashboard/myproducts'>Dashboard</Link>
                 </li>
               </>
-            )}
+            )} */}
 
             {/* <li>
               <Link
