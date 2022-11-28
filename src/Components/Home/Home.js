@@ -7,6 +7,7 @@ import AdvertisedCard from "../AdvertisedCard/AdvertisedCard";
 import { AuthContext } from "../Context/UserContext";
 import { Content } from "../Content/Content";
 import CategoryCard from "../Trial/CategoryCard/CategoryCard";
+import BookLover from "../BookLover/BookLover";
 
 const Home = () => {
   const [categories, setCategories] = useState([]);
@@ -38,7 +39,13 @@ const Home = () => {
   const { user } = useContext(AuthContext);
   return (
     <section>
+      <div className='flex mx-20'>
+        <h1 className='w-1/2 text-7xl lg:mt-[270px] '>Love to read books?</h1>
+        <BookLover></BookLover>
+      </div>
+
       <Content></Content>
+
       <div className='ml-14 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-3'>
         {categories.map((category) => (
           <CategoryCard category={category} key={category.to}></CategoryCard>

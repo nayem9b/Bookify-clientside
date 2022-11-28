@@ -7,6 +7,7 @@ import BookCategory from "../BookCategory/BookCategory";
 import BookCategory2 from "../BookCategory/BookCategory2";
 import BookCategory3 from "../BookCategory/BookCategory3";
 import DashboardLayout from "../DashBoard/DashboardLayout";
+import ErrorPage from "../Error/ErrorPage";
 
 import Home from "../Home/Home";
 import MyOrders from "../MyOrders.js/MyOrders";
@@ -82,6 +83,10 @@ export const router = createBrowserRouter([
       //   element: <Blogs></Blogs>,
       // },
     ],
+  },
+  {
+    path: "*",
+    element: <ErrorPage></ErrorPage>,
   },
   {
     path: "/dashboard",

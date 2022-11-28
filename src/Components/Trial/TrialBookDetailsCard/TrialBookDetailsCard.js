@@ -69,7 +69,7 @@ const TrialBookDetailsCard = ({ book, setItem, setPrice }) => {
             <span>Posted Time:</span> {posted_time}
           </p>
           <div className='card-actions lg:justify-end'>
-            {!isSeller ? (
+            {isBuyer ? (
               <div className='grid grid-cols-2 gap-2 '>
                 <button
                   class='group relative inline-block overflow-hidden border border-indigo-600 px-4 py-3 focus:outline-none focus:ring'

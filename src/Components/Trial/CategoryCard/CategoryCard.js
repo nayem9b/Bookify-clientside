@@ -4,15 +4,11 @@ import { AuthContext } from "../../Context/UserContext";
 
 const CategoryCard = ({ category }) => {
   const { user } = useContext(AuthContext);
-  const { name, description, to } = category;
+  const { name, description, to, image } = category;
   return (
     <div>
       <Link to={user ? `${to}` : `/signin`} class='block'>
-        <img
-          alt='Art'
-          src='https://m.media-amazon.com/images/I/51eeAWItwbL._AC_SY780_.jpg'
-          class='h-96 w-80 object-cover'
-        />
+        <img alt='Art' src={image} class='h-96 w-80 object-cover' />
 
         <h3 class='mt-4 text-xl font-bold text-gray-900'>{name}</h3>
 
