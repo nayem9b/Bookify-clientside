@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 const MyOrders = () => {
   const [booked, setBooked] = useState([]);
   useEffect(() => {
@@ -16,8 +17,8 @@ const MyOrders = () => {
           <thead>
             <tr>
               <th></th>
-              <th>Image</th>
-              <th>Title</th>
+              <th>Name</th>
+
               <th>Price</th>
               <th>Pay</th>
             </tr>
@@ -31,9 +32,11 @@ const MyOrders = () => {
                   {" "}
                   {book.price} <span className='text-2xl'>৳</span>{" "}
                 </td>
-                <td>
-                  <button className='btn btn-xs btn-danger'>Purchase</button>
-                </td>
+                <Link to='/payment'>
+                  <td>
+                    <button className='btn btn-xs btn-danger'>Purchase</button>
+                  </td>
+                </Link>
               </tr>
             ))}
           </tbody>

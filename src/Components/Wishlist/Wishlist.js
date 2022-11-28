@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../Context/UserContext";
+import { Link } from "react-router-dom";
 
 const Wishlist = () => {
   const [wish, setWish] = useState([]);
@@ -34,7 +35,9 @@ const Wishlist = () => {
                   {wish.price} <span className='text-2xl'>৳</span>{" "}
                 </td>
                 <td>
-                  <button className='btn btn-xs btn-danger'>Purchase</button>
+                  <Link to='/payment'>
+                    <button className='btn btn-xs btn-danger'>Purchase</button>
+                  </Link>
                 </td>
               </tr>
             ))}

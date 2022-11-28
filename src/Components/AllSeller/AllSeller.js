@@ -23,7 +23,7 @@ const AllSeller = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        toast.success("Successfully toasted!");
+        toast.success("Successfully deleted the seller");
         refetch();
       });
   };
@@ -32,9 +32,9 @@ const AllSeller = () => {
     isVerified: true,
   };
 
-  const handleEdit = (id) => {
-    console.log(id);
-    fetch(`http://localhost:5000/advertised/${id}`, {
+  const handleEdit = (email) => {
+    console.log(email);
+    fetch(`http://localhost:5000/advertised/${email}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -44,7 +44,7 @@ const AllSeller = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        toast.success("Successfully toasted!");
+        toast.success("Successfully verified the seller");
         refetch();
       });
   };
@@ -73,7 +73,7 @@ const AllSeller = () => {
                   {" "}
                   <button
                     className='btn bg-yellow-400 border-none text-black hover:bg-yellow-500 btn-sm'
-                    onClick={() => handleEdit(seller._id)}>
+                    onClick={() => handleEdit(seller.email)}>
                     Verify
                   </button>{" "}
                 </td>

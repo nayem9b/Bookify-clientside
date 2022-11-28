@@ -21,7 +21,7 @@ const AllBuyers = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        toast.success("Successfully toasted!");
+        toast.success("Successfully deleted the buyer");
         refetch();
       });
   };

@@ -63,9 +63,16 @@ const TrialBookDetailsCard = ({ book, setItem, setPrice, setPicture }) => {
             <span>Condition:</span> {condition}
           </p>
 
-          <p>
-            {" "}
-            <span> Seller: </span> {userName}
+          <p className=''>
+            Seller:{" "}
+            <span>
+              {userName}{" "}
+              {!isVerified ? (
+                <div className='text-gray-400'>unverified</div>
+              ) : (
+                <div className='text-blue-500'>Verified</div>
+              )}{" "}
+            </span>{" "}
           </p>
           <p>
             {" "}

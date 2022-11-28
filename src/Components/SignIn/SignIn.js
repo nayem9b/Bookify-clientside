@@ -84,7 +84,7 @@ const SignIn = () => {
             <h1 class='text-2xl font-bold sm:text-3xl text-start'>
               Signin to buy
               <br /> Book from{" "}
-              <span className='font-extrabold text-transparent text-8xl bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 text-5xl'>
+              <span className='font-extrabold text-transparent text-8xl bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 '>
                 Bookify
               </span>
             </h1>

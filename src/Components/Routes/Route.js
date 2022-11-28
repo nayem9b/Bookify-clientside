@@ -12,6 +12,7 @@ import ErrorPage from "../Error/ErrorPage";
 import Home from "../Home/Home";
 import MyOrders from "../MyOrders.js/MyOrders";
 import MyProducts from "../MyProducts/MyProducts";
+import Payment from "../Payment/Payment";
 
 import Root from "../Root/Root";
 
@@ -64,6 +65,10 @@ export const router = createBrowserRouter([
       {
         path: "/signup",
         element: <SignUp></SignUp>,
+      },
+      {
+        path: "/payment",
+        element: <Payment></Payment>,
       },
 
       // {
