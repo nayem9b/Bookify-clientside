@@ -48,7 +48,7 @@ const Home = () => {
       <h1 className='text-center text-5xl font-semibold mb-10'>
         Product Categories
       </h1>
-      <div className='ml-14 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-3'>
+      <div className='lg:ml-14 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-3 gap-3 justify-center '>
         {categories.map((category) => (
           <CategoryCard category={category} key={category.to}></CategoryCard>
         ))}
@@ -58,7 +58,7 @@ const Home = () => {
           <h1 className='text-center text-5xl font-semibold mb-10 '>
             Advertised Products
           </h1>
-          <div className='grid grid-cols-3 gap-4'>
+          <div className='grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 sm:mx-6 gap-4'>
             {advertisedproducts.map((product) => (
               <AdvertisedCard
                 product={product}

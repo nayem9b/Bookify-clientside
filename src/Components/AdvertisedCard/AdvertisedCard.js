@@ -22,6 +22,7 @@ const AdvertisedCard = ({ product }) => {
   // From here
   const { user } = useContext(AuthContext);
   const [isAdmin] = useAdmin(user?.email);
+  const [isBuyer] = useAdmin(user?.email);
 
   const wishlist = {
     name: name,
@@ -85,7 +86,7 @@ const AdvertisedCard = ({ product }) => {
               </div>
               <span class='mx-1 text-xs '>{date}</span>
               <div className='card-actions lg:justify-end'>
-                {!isAdmin && (
+                {isBuyer ? (
                   <div className='grid grid-cols-2 gap-2 '>
                     <button
                       class='inline-block rounded border border-current px-6 py-2 text-sm font-medium text-indigo-600 transition hover:-rotate-2 hover:scale-110 focus:outline-none focus:ring active:text-indigo-500'
@@ -99,6 +100,12 @@ const AdvertisedCard = ({ product }) => {
                       Book now
                     </button>
                   </div>
+                ) : (
+                  <>
+                    <h1 className=' font-semibold'>
+                      You need to be a buyer to purchase this
+                    </h1>
+                  </>
                 )}
               </div>
             </div>

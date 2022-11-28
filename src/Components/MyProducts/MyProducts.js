@@ -63,8 +63,6 @@ const MyProducts = () => {
       userImage: userImage,
       isVerified: isVerified,
     };
-    console.log(clickedProduct);
-    console.log(name, mobileNumber, place, price);
 
     fetch(`http://localhost:5000/myproduct/new`, {
       method: "POST",
