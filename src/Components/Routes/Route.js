@@ -23,6 +23,7 @@ import Wishlist from "../Wishlist/Wishlist";
 import AdminRoute from "./AdminRoute";
 import BuyerRoute from "./BuyerRoute";
 import PrivateRoute from "./PrivateRoute";
+import SellerRoute from "./SellerRoute";
 
 export const router = createBrowserRouter([
   {
@@ -72,11 +73,7 @@ export const router = createBrowserRouter([
 
       {
         path: "/blogs",
-        element: (
-          <AdminRoute>
-            <Blogs></Blogs>{" "}
-          </AdminRoute>
-        ),
+        element: <Blogs></Blogs>,
       },
       // {
       //   path: "/blogs",
@@ -106,27 +103,52 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/myorders",
-        element: <MyOrders></MyOrders>,
+        element: (
+          <BuyerRoute>
+            <MyOrders></MyOrders>
+          </BuyerRoute>
+        ),
       },
       {
         path: "/dashboard/allbuyers",
-        element: <AllBuyers></AllBuyers>,
+        element: (
+          <AdminRoute>
+            <AllBuyers></AllBuyers>
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/allsellers",
-        element: <AllSeller></AllSeller>,
+        element: (
+          <AdminRoute>
+            <AllSeller></AllSeller>
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/wishlist",
-        element: <Wishlist></Wishlist>,
+        element: (
+          <BuyerRoute>
+            <Wishlist></Wishlist>
+          </BuyerRoute>
+        ),
       },
       {
         path: "/dashboard/myproducts",
-        element: <MyProducts></MyProducts>,
+        element: (
+          <SellerRoute>
+            {" "}
+            <MyProducts></MyProducts>
+          </SellerRoute>
+        ),
       },
       {
         path: "/dashboard/addaproduct",
-        element: <AddAProduct></AddAProduct>,
+        element: (
+          <SellerRoute>
+            <AddAProduct></AddAProduct>
+          </SellerRoute>
+        ),
       },
     ],
   },

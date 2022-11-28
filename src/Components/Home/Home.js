@@ -45,7 +45,9 @@ const Home = () => {
       </div>
 
       <Content></Content>
-
+      <h1 className='text-center text-5xl font-semibold mb-10'>
+        Product Categories
+      </h1>
       <div className='ml-14 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-3'>
         {categories.map((category) => (
           <CategoryCard category={category} key={category.to}></CategoryCard>
@@ -53,7 +55,9 @@ const Home = () => {
       </div>
       {advertisedproducts.length > 0 && (
         <div>
-          <h1 className='text-center text-3xl'>Advertised Products</h1>
+          <h1 className='text-center text-5xl font-semibold mb-10 '>
+            Advertised Products
+          </h1>
           <div className='grid grid-cols-3 gap-4'>
             {advertisedproducts.map((product) => (
               <AdvertisedCard
