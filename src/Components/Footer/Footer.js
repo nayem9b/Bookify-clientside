@@ -7,7 +7,7 @@ const Footer = () => {
         <div class='mx-auto max-w-screen-xl px-4 pt-16 pb-8 sm:px-6 lg:px-8'>
           <div class='mx-auto max-w-md'>
             <strong class='block text-center text-xl font-medium text-gray-900 sm:text-3xl'>
-              Want us to email you with the latest blockbuster news?
+              Want us to email you with the latest news from Bookify?
             </strong>
 
             <form class='mt-6'>
@@ -150,22 +150,17 @@ const Footer = () => {
                   <a
                     class='text-gray-700 transition hover:text-gray-700/75'
                     href='/'>
-                    Marketing
+                    Action And Adventure
                   </a>
                   <a
                     class='text-gray-700 transition hover:text-gray-700/75'
                     href='/'>
-                    Graphic Design
+                    Classics
                   </a>
                   <a
                     class='text-gray-700 transition hover:text-gray-700/75'
                     href='/'>
-                    App Development
-                  </a>
-                  <a
-                    class='text-gray-700 transition hover:text-gray-700/75'
-                    href='/'>
-                    Web Development
+                    Memoir
                   </a>
                 </nav>
               </div>
@@ -229,21 +224,10 @@ const Footer = () => {
 
           <div class='mt-16 border-t border-gray-100 pt-8'>
             <p class='text-center text-xs leading-relaxed text-gray-500'>
-              © Company 2022. All rights reserved.
+              © Bookify 2022. All rights reserved.
               <br />
               Created with
-              <a
-                href=''
-                class='text-gray-700 underline transition hover:text-gray-700/75'>
-                Laravel
-              </a>
-              and
-              <a
-                href=''
-                class='text-gray-700 underline transition hover:text-gray-700/75'>
-                Laravel Livewire
-              </a>
-              .
+              <span className='underline'> Create React App</span>
             </p>
           </div>
         </div>
