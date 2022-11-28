@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/UserContext";
 import useTitle from "../Hooks/UseTitle";
-import book from "../../Images/31821-share-everythin-moneybooks.json";
+import man from "../../Images/23844-concept-man-flying-with-books.json";
 import Lottie from "lottie-react";
 const SignUp = () => {
   const [postImage, setPostImage] = useState("");
@@ -106,9 +106,9 @@ const SignUp = () => {
     <div>
       <section class='bg-white'>
         <div class='lg:grid lg:min-h-screen lg:grid-cols-12'>
-          <section class=' relative flex h-32 items-end bg-gray-900 lg:col-span-5 lg:h-full xl:col-span-6'>
+          <section class=' relative flex h-32 items-end  lg:col-span-5 lg:h-full xl:col-span-6'>
             <div className='flex lg:block sm:hidden justify-center items-center'>
-              <Lottie animationData={book} loop={true} />
+              <Lottie animationData={man} loop={true} />
             </div>
           </section>
 

@@ -39,8 +39,10 @@ const Home = () => {
   const { user } = useContext(AuthContext);
   return (
     <section>
-      <div className='flex mx-20'>
-        <h1 className='w-1/2 text-7xl lg:mt-[270px] '>Love to read books?</h1>
+      <div className='flex mx-20 lg:mb-20'>
+        <h1 className='w-1/2 text-7xl lg:mt-[270px] font-extrabold text-transparent text-8xl bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 text-5xl '>
+          Love to read books?
+        </h1>
         <BookLover></BookLover>
       </div>
 

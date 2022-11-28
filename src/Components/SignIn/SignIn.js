@@ -3,7 +3,8 @@ import GoogleButton from "react-google-button";
 import toast, { Toaster } from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/UserContext";
-
+import Lottie from "lottie-react";
+import resale from "../../Images/resale.json";
 const SignIn = () => {
   const { googleSignIn, githubSignIn, userSignIn, loading } =
     useContext(AuthContext);
@@ -14,36 +15,6 @@ const SignIn = () => {
   // Google Login
   const handleGoogleLogin = () => {
     googleSignIn()
-      .then((result) => {
-        const user = result.user;
-        const currentUser = {
-          email: user.email,
-        };
-        fetch("https://server-side-nayem9b.vercel.app/jwt", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-
-          body: JSON.stringify(currentUser),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
-
-            localStorage.setItem("jwt-token", data.token);
-
-            navigate(from, { replace: true });
-          });
-        navigate(from, { replace: true });
-        console.log(user);
-      })
-      .catch((error) => console.log(error));
-  };
-
-  // Github Login
-  const handleGithubLogin = () => {
-    githubSignIn()
       .then((result) => {
         const user = result.user;
         const currentUser = {
@@ -111,14 +82,15 @@ const SignIn = () => {
         <div class='w-full px-4 py-12 sm:px-6 sm:py-16 lg:w-1/2 lg:px-8 lg:py-24'>
           <div class='mx-auto max-w-lg text-center'>
             <h1 class='text-2xl font-bold sm:text-3xl text-start'>
-              Signin to order
-              <br /> food from{" "}
-              <span className='text-orange-400 text-5xl'>Anonna</span>
+              Signin to buy
+              <br /> Book from{" "}
+              <span className='font-extrabold text-transparent text-8xl bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 text-5xl'>
+                Bookify
+              </span>
             </h1>
 
             <p class='mt-4 text-gray-500 text-start'>
-              A registered chef in your locality. Order food at a reasonable
-              price
+              Resale books at affordable price
             </p>
           </div>
 
@@ -170,33 +142,33 @@ const SignIn = () => {
               </button>
             </div>
             <div className='flex justify-between'>
-              <GoogleButton onClick={handleGoogleLogin}></GoogleButton>
-              <Link
-                onClick={handleGithubLogin}
-                class='inline-flex   rounded border-2 border-[#171515] bg-[#171515] px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-transparent hover:text-[#171515] focus:outline-none focus:ring active:opacity-75'
-                rel='noreferrer'>
-                GitHub
+              <button
+                onClick={handleGoogleLogin}
+                type='button'
+                class='text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2'>
                 <svg
-                  class='ml-2 h-5 w-5'
-                  fill='currentColor'
-                  viewBox='0 0 24 24'
-                  aria-hidden='true'>
+                  class='mr-2 -ml-1 w-4 h-4'
+                  aria-hidden='true'
+                  focusable='false'
+                  data-prefix='fab'
+                  data-icon='google'
+                  role='img'
+                  xmlns='http://www.w3.org/2000/svg'
+                  viewBox='0 0 488 512'>
                   <path
-                    fill-rule='evenodd'
-                    d='M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z'
-                    clip-rule='evenodd'></path>
+                    fill='currentColor'
+                    d='M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z'></path>
                 </svg>
-              </Link>
+                Sign in with Google
+              </button>
             </div>
           </form>
         </div>
 
         <div class='relative h-64 w-full sm:h-96 lg:h-full lg:w-1/2'>
-          <img
-            alt='Welcome'
-            src='https://images.unsplash.com/photo-1610057099443-fde8c4d50f91?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80'
-            class='absolute inset-0 h-full w-full object-cover'
-          />
+          <div className='flex lg:block sm:hidden justify-center items-center'>
+            <Lottie animationData={resale} loop={true} />
+          </div>
         </div>
       </section>
 
