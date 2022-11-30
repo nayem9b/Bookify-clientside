@@ -2,8 +2,6 @@
 
 ##Live Website: https://bookify-a39cf.web.app
 
-adminEmail: korim@ali.com
-adminPassword: 123456
 
 ### Key Features of Bookify
 
